@@ -144,13 +144,15 @@ return (
             <div className="container mx-auto px-6">
                     <div className="flex items-center justify-between h-20">
                             {/* Logo */}
-                            <div className="flex items-center space-x-2">
-                                    <div className={`h-10 w-10 rounded-lg overflow-hidden ${scrolled ? 'shadow-md' : ''}`}>
+                            <div className="flex items-center space-x-3">
+                                    <div className={`h-14 w-14 rounded-lg overflow-hidden ${scrolled ? 'shadow-md' : ''}`}>
                                             <img src={logo} alt="Trust Logo" className="w-full h-full object-cover" />
                                     </div>
-                                    <span className={`font-bold text-xl ${scrolled ? 'text-gray-800' : 'text-white'}`}>
-                                            Marol Human Welfare Trust
-                                    </span>
+                                    <div className={`font-bold text-xl leading-tight`}>
+                                            <span className="text-orange-500">Marol </span>
+                                            <span className={scrolled ? "text-gray-800" : "text-white"}>Human </span>
+                                            <span className="text-green-600">Welfare Trust</span>
+                                    </div>
                             </div>
 
                             {/* Desktop Navigation */}
@@ -415,7 +417,7 @@ return (
 
         {/* About Section */}
         <section id="about" className="py-20 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
-            <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6">
                 <div className="md:flex md:items-center md:space-x-12">
                     <div className="md:w-1/2 mb-10 md:mb-0">
                         <div className="relative">
@@ -602,12 +604,14 @@ Marol Andheri East, Mumbai 40059, Maharashtra, India</p>
                 <div className="grid md:grid-cols-4 gap-8">
                     <div>
                     <div className="flex items-center space-x-2 mb-4">
-                            <div className={`h-10 w-10 rounded-lg overflow-hidden ${scrolled ? 'shadow-md' : ''}`}>
-                                            <img src={logo} alt="Trust Logo" className="w-full h-full object-cover" />
+                            <div className="h-16 w-16 rounded-lg overflow-hidden shadow-lg">
+                                <img src={logo} alt="Trust Logo" className="w-full h-full object-cover" />
                             </div>
-                                    <span className={`font-bold text-xl ${scrolled ? 'text-white' : 'text-white'}`}>
-                                            Marol Human Welfare Trust
-                                    </span>
+                            <div className="font-bold text-xl">
+                                <span className="text-orange-500">Marol </span>
+                                <span className="text-white">Human </span>
+                                <span className="text-green-500">Welfare Trust</span>
+                            </div>
                     </div>
                         <p className="text-gray-400 mb-6">Empowering communities through education, support, and guidance.</p>
                         <div className="flex space-x-4">
