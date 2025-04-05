@@ -1,10 +1,2 @@
-# health
-
-(WIP) Mini Project
-
-Steps to run:
-
-frontend- cd frontend && npm run dev
-
-backend- cd backend && node server.js
-      
+# [MHWT-Website](https://mhwt.vercel.app)
+Check out our application by clicking on it [here](https://mhwt.vercel.app).
