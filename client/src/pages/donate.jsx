@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import logo from '../assets/logo.jpeg'; 
 import Footer from '../components/footer';
 import qrCodeImage from '../assets/qr.png';
+import Navbar from '../components/navbar';
 
 const Donate = () => {
     const [activeTab, setActiveTab] = useState('qrcode');
@@ -61,126 +62,72 @@ const Donate = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white text-gray-800">
             
-            <nav className="fixed w-full z-50 transition-all duration-300 bg-white shadow-lg">
-                <div className="container mx-auto px-6">
-                    <div className="flex items-center justify-between h-20">
-                        {/* Logo */}
-                        <div className="flex items-center space-x-3">
-                                                            <div className={`h-14 w-14 rounded-lg overflow-hidden ${scrolled ? 'shadow-md' : ''}`}>
-                                                                    <img src={logo} alt="Trust Logo" className="w-full h-full object-cover" />
-                                                            </div>
-                                                            <div className={`font-bold text-xl leading-tight`}>
-                                                                    <span className="text-orange-500">Marol </span>
-                                                                    <span className="text-gray-800">Human </span>
-                                                                    <span className="text-green-600">Welfare Trust</span>
-                                                            </div>
-                                                    </div>
-                        
-                        {/* Desktop Navigation */}
-                        <div className="hidden md:flex space-x-1">
-                            {navItems.map(item => (
-                                <button 
-                                    key={item.id}
-                                    onClick={() => {
-                                        if(item.id === 'home'){
-                                            window.location.href = '/';
-                                        } else {
-                                            window.location.href = `/#${item.id}`;
-                                        }
-                                    }}
-                                    className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                                        activeSection === item.id 
-                                            ? 'bg-blue-600 text-white font-medium' 
-                                            : 'text-gray-700 hover:bg-gray-100'
-                                    }`}
-                                >
-                                    {item.label}
-                                </button>
-                            ))}
-                        </div>
-                        
-                        {/* CTA Button */}
-                        <div className="hidden md:block">
-                            <button
-                                onClick={() => window.location.href = '/donate'}
-                                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition duration-300"
-                            >
-                                Donate
-                            </button>
-                        </div>
-                        
-                        {/* Mobile menu button */}
-                        <div className="md:hidden">
-                            <button 
-                                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className="p-2 rounded-lg text-gray-800 hover:bg-gray-100"
-                            >
-                                {mobileMenuOpen ? '✕' : '☰'}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                {/* Mobile Navigation */}
-                {mobileMenuOpen && (
-                    <div className="md:hidden bg-white shadow-lg animate-slideDown">
-                        <div className="px-4 py-2 space-y-1">
-                            {navItems.map(item => (
-                                <button
-                                    key={item.id}
-                                    onClick={() => {
-                                        if(item.id === 'home'){
-                                            window.location.href = '/';
-                                        } else {
-                                            window.location.href = `/#${item.id}`;
-                                        }
-                                    }}
-                                    className={`block w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
-                                        activeSection === item.id ? 'bg-blue-600 text-white' : 'text-gray-700 hover:bg-gray-100'
-                                    }`}
-                                >
-                                    {item.label}
-                                </button>
-                            ))}
-                            <button
-                                onClick={() => window.location.href = '/donate'}
-                                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition duration-300"
-                            >
-                                Donate
-                            </button>
-                        </div>
-                    </div>
-                )}
-            </nav>
+           <Navbar />
 
             {/* Hero Section */}
             <motion.div 
-                className="max-w-7xl mx-auto py-20 px-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
-            >
-                <div className="text-center mb-16 mt-8">
-                    <motion.h1 
-                        className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600"
-                        initial={{ y: -20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                    >
-                        Make a Difference Today
-                    </motion.h1>
-                    <motion.p 
-                        className="text-xl text-gray-600 max-w-3xl mx-auto"
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                    >
-                        Your contribution helps us continue our mission of creating positive change in communities worldwide.
-                    </motion.p>
-                </div>
+    className="relative pt-32 pb-24 overflow-hidden"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+>
+<div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-indigo-900 to-violet-900 opacity-90 z-0"></div>
+    <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center mix-blend-overlay z-0"></div>
+    
+    <div className="absolute inset-0 z-0">
+        {[...Array(20)].map((_, i) => (
+            <div 
+                key={i}
+                className="absolute rounded-full bg-white/20 animate-float"
+                style={{
+                    width: `${Math.random() * 10 + 5}px`,
+                    height: `${Math.random() * 10 + 5}px`,
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    animationDuration: `${Math.random() * 10 + 10}s`,
+                    animationDelay: `${Math.random() * 5}s`
+                }}
+            ></div>
+        ))}
+    </div>
+
+    <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                Make a Difference Today
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-10">
+                Your donation fuels our mission of creating positive change in communities across the region.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+                <a 
+                    href="https://wa.me/919987855127?text=Hello,%20I'm%20interested%20in%20donating."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white text-blue-700 font-medium px-8 py-3 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300"
+                >
+                    Donate Now
+                </a>
+                <a 
+                    href="https://wa.me/919987855127?text=Hello,%20I'm%20interested%20in%20volunteering."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-transparent border-2 border-white text-white font-medium px-6 py-3 rounded-xl hover:bg-white/10 transform hover:-translate-y-1 transition duration-300"
+                >
+                    Volunteer With Us
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-gray-50"></div>
+    <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 80H1440V30C1200 60 720 0 480 30C240 60 120 30 0 10V80Z" fill="#F9FAFB"/>
+    </svg>
+</motion.div>
 
                 {/* Donation Methods */}
-                <div className="max-w-4xl mx-auto bg-white backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border border-gray-200 ">
+                <div className="max-w-4xl mx-auto mb-10 bg-white backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border border-gray-200 ">
                     {/* Tabs */}
                     <div className="flex border-b border-gray-200">
                         <button 
@@ -264,7 +211,7 @@ const Donate = () => {
                         )}
                     </div>
                 </div>
-            </motion.div>
+          
 
 <Footer />
         </div>
