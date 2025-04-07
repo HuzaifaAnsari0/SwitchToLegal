@@ -18,8 +18,30 @@ const Navbar = () => {
             setScrolled(window.scrollY > 50);
         };
 
+        // Set active section based on current URL on initial load and when URL changes
+        const determineActiveSection = () => {
+            const path = window.location.pathname;
+            const hash = window.location.hash.replace('#', '');
+            
+            if (path === '/about') {
+                setActiveSection('about');
+            } else if (path === '/') {
+                setActiveSection(hash || 'home');
+            } else if (path === '/donate') {
+                setActiveSection('donate');
+            } else if (hash) {
+                setActiveSection(hash);
+            }
+        };
+
+        determineActiveSection();
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('hashchange', determineActiveSection);
+        
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('hashchange', determineActiveSection);
+        };
     }, []);
 
     const scrollToSection = (id) => {
@@ -31,65 +53,78 @@ const Navbar = () => {
         setMobileMenuOpen(false);
     };
 
+    const handleNavItemClick = (item) => {
+        setActiveSection(item.id);
+        
+        if (item.id === 'about') {
+            window.location.href = '/about';
+        } else if (item.id === 'home') {
+            window.location.href = '/';
+        } else {
+            window.location.href = `/#${item.id}`;
+        }
+    };
+
     return (
         <nav
             className={`fixed w-full z-50 transition-all duration-300 ${
                 scrolled ? 'bg-white/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
             }`}
         >
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-20">
                  
-                                        <div className="flex items-center space-x-3">
-                                            <div
-                                                className={`h-14 w-14 rounded-lg overflow-hidden ${scrolled ? 'shadow-md' : ''}`}
-                                            >
-                                                <img src={logo} alt="Trust Logo" className="w-full h-full object-cover" />
-                                            </div>
-                                            <div className="font-bold text-xl leading-tight">
-                                                <span className="text-orange-500">Marol </span>
-                                                <span className={scrolled ? 'text-gray-800' : 'text-white'}>Human </span>
-                                                <span className="text-green-600">Welfare Trust</span>
-                                            </div>
-                                        </div>
+                    <div className="flex items-center space-x-2">
+                        <div
+                            className={`h-12 w-12 rounded-lg overflow-hidden ${scrolled ? 'shadow-md' : ''}`}
+                        >
+                            <img src={logo} alt="Trust Logo" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="font-bold text-xl leading-tight">
+                            <span className="text-orange-500">Marol </span>
+                            <span className={scrolled ? 'text-gray-800' : 'text-white'}>Human </span>
+                            <span className="text-green-600">Welfare Trust</span>
+                        </div>
+                    </div>
 
-                                        {/* Desktop Navigation */}
-                                        <div className="hidden md:flex space-x-1">
-                                            {navItems.map((item) => (
-                                                <button
-                                                    key={item.id}
-                                                    onClick={() => {
-                                                        if (item.id === 'about') {
-                                                            window.location.href = '/about';
-                                                        } else if (item.id === 'home') {
-                                                            window.location.href = '/';
-                                                        } else {
-                                                            window.location.href = `/#${item.id}`;
-                                                        }
-                                                    }}
-                                                    className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                                                        activeSection === item.id
-                                                            ? 'bg-blue-600 text-white font-medium'
-                                                            : scrolled
-                                                            ? 'text-gray-700 hover:bg-gray-100'
-                                                            : 'text-white hover:bg-white/10'
-                                                    }`}
-                                                >
-                                                    {item.label}
-                                                </button>
-                                            ))}
-                                        </div>
+                    <div className="flex items-center justify-center flex-1">
+                        {/* Desktop Navigation - Centered */}
+                        <div className="hidden md:flex items-center justify-center space-x-1 pr-32">
+                            {navItems.map((item) => (
+                                <button
+                                    key={item.id}
+                                    onClick={() => handleNavItemClick(item)}
+                                    className={`px-4 py-2 rounded-lg transition-all duration-300 ${
+                                        activeSection === item.id
+                                            ? 'bg-blue-600 text-white font-medium'
+                                            : scrolled
+                                            ? 'text-gray-700 hover:bg-gray-100'
+                                            : 'text-white hover:bg-white/10'
+                                    }`}
+                                >
+                                    {item.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
-                                        <div className="hidden md:block">
-                                            <button
-                                                onClick={() => (window.location.href = '/donate')}
-                                                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition duration-300"
-                                            >
-                                                Donate
-                                            </button>
-                                        </div>
+                    <div className="hidden md:block">
+                        <button
+                            onClick={() => {
+                                setActiveSection('donate');
+                                window.location.href = '/donate';
+                            }}
+                            className={`px-6 py-2 rounded-lg transition duration-300 ${
+                                activeSection === 'donate'
+                                ? 'bg-blue-600 text-white font-medium'
+                                : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg'
+                            }`}
+                        >
+                            Donate
+                        </button>
+                    </div>
 
-                                        {/* Mobile menu button */}
+                    {/* Mobile menu button */}
                     <div className="md:hidden">
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -110,7 +145,7 @@ const Navbar = () => {
                         {navItems.map((item) => (
                             <button
                                 key={item.id}
-                                onClick={() => scrollToSection(item.id)}
+                                onClick={() => handleNavItemClick(item)}
                                 className={`block w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
                                     activeSection === item.id
                                         ? 'bg-blue-600 text-white'
@@ -121,8 +156,15 @@ const Navbar = () => {
                             </button>
                         ))}
                         <button
-                            onClick={() => (window.location.href = '/donate')}
-                            className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition duration-300"
+                            onClick={() => {
+                                setActiveSection('donate');
+                                window.location.href = '/donate';
+                            }}
+                            className={`block w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
+                                activeSection === 'donate'
+                                ? 'bg-blue-600 text-white'
+                                : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg'
+                            }`}
                         >
                             Donate
                         </button>
