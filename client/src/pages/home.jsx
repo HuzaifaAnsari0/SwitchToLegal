@@ -1,531 +1,647 @@
-import React, { useState, useEffect } from 'react';
-import ogteam from '../assets/ogteam.jpeg';
-import logo from '../assets/logo.jpeg';
-import Footer from '../components/footer';
-import testimonial1 from '../assets/person2.png';
-import testimonial2 from '../assets/person1.png';
-import testimonial3 from '../assets/person3.png';
-import Navbar from '../components/navbar';
+import { useState, useEffect } from 'react';
+import { 
+    FileText, 
+    Shield, 
+    FileSignature, 
+    Building, 
+    Award, 
+    BookOpen, 
+    DollarSign, 
+    Users,
+    Phone,
+    Mail,
+    MessageSquare,
+    ChevronDown,
+    ArrowRight,
+    CheckCircle,
+    CheckSquare,
+    Lock,
+    Search,
+    Star,
+    Menu,
+    X,
+    UserCheck, 
+    Briefcase, 
+    HeartPulse, 
+    Home, 
+    Landmark, 
+    Banknote,
+    Car, 
+    Bike, 
+    Truck, 
+    Factory, 
+    ClipboardCheck, 
+    Handshake, 
+    User, 
+    Scale
+} from 'lucide-react';
 
-const HomePage = () => {
-  const [activeTab, setActiveTab] = useState('meals');
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-
-  // Handle scroll events for navbar and scroll animations
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-      
-      // Determine active section based on scroll position
-      const sections = ['home', 'services', 'impact', 'about', 'contact'];
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const services = [
-    {
-      id: 'meals',
-      icon: '🍱',
-      title: 'Community Meal Support',
-      description: 'We provide nutritious meals and refreshments to relatives of outstation patients at Tata Memorial Hospital and KEM Hospital, ensuring they have access to basic sustenance during challenging times.',
-      details: 'Our volunteers work directly with hospital administration to identify families in need and deliver balanced meals that meet dietary requirements. We serve over 200 meals daily across multiple hospitals.',
-      color: 'from-blue-600 to-cyan-400'
-    },
-    {
-      id: 'docs',
-      icon: '📄',
-      title: 'Documentation Guidance',
-      description: 'We assist students and families with accurate documentation for academic and official purposes, including verification, corrections, and preparing necessary paperwork.',
-      details: 'Our team of experienced volunteers helps navigate complex documentation requirements for admissions, scholarships, and government schemes. We provide personalized guidance sessions and verification workshops.',
-      color: 'from-indigo-600 to-blue-400'
-    },
-    {
-      id: 'education',
-      icon: '🎓',
-      title: 'Educational Counseling',
-      description: 'We advise students about educational funding opportunities, providing information about scholarships and guidance on availing education loans.',
-      details: 'We specialize in Maulana Azad Education Loan applications and similar financial aid programs designed for minority communities. Our counselors have helped over 5,000 students secure education funding.',
-      color: 'from-violet-600 to-indigo-400'
-    },
-    {
-      id: 'programs',
-      icon: '🌍',
-      title: 'State-Level Upliftment',
-      description: 'We organize state-level awareness and empowerment initiatives aimed at uplifting minority communities and other underrepresented groups.',
-      details: 'Our programs focus on education, skill-building, and creating equal opportunities for sustainable growth and development. We work with government agencies and private organizations to maximize our impact.',
-      color: 'from-purple-600 to-violet-400'
-    },
-    {
-      id: 'career',
-      icon: '📚',
-      title: 'Career & Course Guidance',
-      description: 'We provide comprehensive educational guidance to students from minority communities for medical, engineering, law, commerce, arts, and other professional courses.',
-      details: 'Our counselors offer personalized advice for exams like NEET, JEE, MHT-CET, helping students make informed career decisions. We conduct regular workshops and one-on-one counseling sessions.',
-      color: 'from-fuchsia-600 to-purple-400'
-    },
-    {
-      id: 'skills',
-      icon: '🛠️',
-      title: 'Skill Development',
-      description: 'We promote skill enhancement programs to boost employment opportunities among youth, sharing updates on government and private skill development schemes.',
-      details: 'Our vocational training initiatives are tailored to current market needs, helping participants gain practical, employable skills. We partner with industry leaders to provide internship and job placement opportunities.',
-      color: 'from-blue-600 to-indigo-400'
-    }
-  ];
-
-  // For testimonials and impact stats
-  const impactStats = [
-    { figure: '10,000+', label: 'Meals Served', icon: '🍲' },
-    { figure: '5,000+', label: 'Students Counseled', icon: '👨‍🎓' },
-    { figure: '2,000+', label: 'Documents Processed', icon: '📋' },
-    { figure: '500+', label: 'Scholarships Facilitated', icon: '💰' }
-  ];
-
-const testimonials = [
-    {
-        id: 1,
-        name: "Rahul Sharma",
-        role: "Medical Student",
-        quote: "The guidance I received for my NEET preparation and scholarship applications was invaluable. I'm now pursuing my dream of becoming a doctor.",
-        image: testimonial1
-    },
-    {
-        id: 2,
-        name: "Priya Patel",
-        role: "Parent",
-        quote: "When my child was hospitalized at Tata Memorial, the meal support program was a blessing. It allowed me to stay by my child's side without worrying about food.",
-        image: testimonial2
-    },
-    {
-        id: 3,
-        name: "Arjun Kumar",
-        role: "Engineering Graduate",
-        quote: "The documentation assistance and education loan guidance helped me complete my engineering degree. I'm now employed at a top tech company.",
-        image: testimonial3
-    }
-];
-
-  // Navigation items
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'services', label: 'Services' },
-    { id: 'impact', label: 'Impact' },
-    { id: 'about', label: 'About Us' },
-    { id: 'contact', label: 'Contact' }
-  ];
-
-  // Scroll to section function
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(id);
-      setMobileMenuOpen(false);
-    }
-  };
-
-return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+export default function WebOnlineCA() {
+    const [activeTab, setActiveTab] = useState('itr');
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [formData, setFormData] = useState({
+        name: '',
+        phone: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
     
-        <Navbar />
+    useEffect(() => {
+        const handleScroll = () => {
+            const isScrolled = window.scrollY > 20;
+            if (isScrolled !== scrolled) {
+                setScrolled(isScrolled);
+            }
+        };
 
-        {/* Hero Section */}
-        <section id="home" className="relative pt-32 pb-24 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-indigo-900 to-violet-900 opacity-90 z-0"></div>
-            <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] bg-cover bg-center mix-blend-overlay z-0"></div>
-            
-            
-            <div className="absolute inset-0 z-0">
-                {[...Array(20)].map((_, i) => (
-                    <div 
-                        key={i}
-                        className="absolute rounded-full bg-white/20 animate-float"
-                        style={{
-                            width: `${Math.random() * 10 + 5}px`,
-                            height: `${Math.random() * 10 + 5}px`,
-                            top: `${Math.random() * 100}%`,
-                            left: `${Math.random() * 100}%`,
-                            animationDuration: `${Math.random() * 10 + 10}s`,
-                            animationDelay: `${Math.random() * 5}s`
-                        }}
-                    ></div>
-                ))}
-            </div>
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [scrolled]);
+    
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
+    
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+    };
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Handle form submission logic
+        alert('Thank you for your message! Our team will contact you shortly.');
+        setFormData({
+            name: '',
+            phone: '',
+            email: '',
+            subject: '',
+            message: ''
+        });
+    };
+    
+    // Updated services with simpler texts
+    const services = [
+        // Tax & Compliance Services
+        { id: 'itr', icon: <FileText className="w-6 h-6" />, title: 'Income Tax Return - ITR', desc: 'File Your ITR Now' },
+        { id: 'gst', icon: <Scale className="w-6 h-6" />, title: 'GST Registration', desc: 'GST Registration & Return Filing' },
+        { id: 'dsc', icon: <FileSignature className="w-6 h-6" />, title: 'Apply for DSC', desc: 'Digital Signature Certificate' },
+        { id: 'udyam', icon: <Factory className="w-6 h-6" />, title: 'Udyam Registration - MSME', desc: 'Register Your MSME' },
+        { id: 'fssai', icon: <ClipboardCheck className="w-6 h-6" />, title: 'FSSAI Food License', desc: 'Get FSSAI Food License' },
+        { id: 'shop', icon: <Landmark className="w-6 h-6" />, title: 'Shop & Establishment Act', desc: 'Register under Shop Act' },
+        { id: 'trademark', icon: <Award className="w-6 h-6" />, title: 'TradeMark Registration', desc: 'Register your Trademark' },
+        { id: 'company', icon: <Briefcase className="w-6 h-6" />, title: 'Company Registration', desc: 'Register New Company' },
+        { id: 'accounting', icon: <BookOpen className="w-6 h-6" />, title: 'Accounting Services', desc: 'Maintain Your Books' },
+        { id: 'brn', icon: <UserCheck className="w-6 h-6" />, title: 'BRN No Sanstha Aadhaar', desc: 'Apply For BRN Number' },
+      
+        // Insurance Services
+        { id: 'insurance-agent', icon: <User className="w-6 h-6" />, title: 'Insurance Agent POS', desc: 'Insurance Agent Registration' },
+        { id: 'bike-insurance', icon: <Bike className="w-6 h-6" />, title: 'Bike Insurance', desc: 'Get Bike Insurance' },
+        { id: 'car-insurance', icon: <Car className="w-6 h-6" />, title: 'Car Insurance', desc: 'Get Car Insurance' },
+        { id: 'rickshaw-insurance', icon: <Truck className="w-6 h-6" />, title: 'Rickshaw Insurance', desc: 'Apply Rickshaw Insurance' },
+        { id: 'taxi-insurance', icon: <Car className="w-6 h-6" />, title: 'Taxi Insurance', desc: 'Apply Taxi/Cab Insurance' },
+        { id: 'tractor-insurance', icon: <Truck className="w-6 h-6" />, title: 'Tractor Insurance', desc: 'Apply Tractor Insurance' },
+        { id: 'truck-insurance', icon: <Truck className="w-6 h-6" />, title: 'Truck/Bus Insurance', desc: 'Apply For Truck/Bus Insurance' },
+        { id: 'pickup-insurance', icon: <Truck className="w-6 h-6" />, title: 'Pickup Truck Insurance', desc: 'Apply For Truck/Pickup Insurance' },
+        { id: 'accident-insurance', icon: <Shield className="w-6 h-6" />, title: 'Personal Accident Insurance', desc: 'Apply for Personal Accident Insurance' },
+        { id: 'health-insurance', icon: <HeartPulse className="w-6 h-6" />, title: 'Health Insurance', desc: 'Apply Health Insurance' },
+        { id: 'life-insurance', icon: <UserCheck className="w-6 h-6" />, title: 'Term Life Insurance', desc: 'Apply Term Life Insurance' },
+        { id: 'shop-insurance', icon: <Landmark className="w-6 h-6" />, title: 'Shop Insurance', desc: 'Apply Shop Insurance' },
+        { id: 'home-insurance', icon: <Home className="w-6 h-6" />, title: 'Home Insurance', desc: 'Apply Home Insurance' },
+      
+        // Loan Services
+        { id: 'property-loan', icon: <Banknote className="w-6 h-6" />, title: 'Loan Against Property', desc: 'Apply Loan Against Property' },
+        { id: 'personal-loan', icon: <Handshake className="w-6 h-6" />, title: 'Personal Loan', desc: 'Apply Personal Loan' },
+        { id: 'home-loan', icon: <Home className="w-6 h-6" />, title: 'Home Loan', desc: 'Apply Home Loan' },
+        { id: 'vehicle-loan', icon: <Truck className="w-6 h-6" />, title: 'Commercial Vehicle Loan', desc: 'Apply Commercial Vehicle Loan' },
+        { id: 'old-car-loan', icon: <Car className="w-6 h-6" />, title: 'Old Car Loan', desc: 'Apply Old Car Loan' },
+        { id: 'business-loan', icon: <Briefcase className="w-6 h-6" />, title: 'Business Loan', desc: 'Apply Business Loan' },
+      ];
+    const stats = [
+        { number: '4.5 lakh+', title: 'Tax Returns Filed' },
+        { number: '24520+', title: 'Strategic Partnerships' },
+        { number: '70+', title: 'Onboard Experts' },
+        { number: '250+', title: 'Working Cities' }
+    ];
+    
+    const steps = [
+        { title: 'Complete Application', desc: 'Simple steps for everyone', icon: <FileText className="w-5 h-5" /> },
+        { title: 'Secure Payment', desc: 'Fast & secure processing', icon: <DollarSign className="w-5 h-5" /> },
+        { title: 'Expert Processing', desc: 'Application handled by pros', icon: <Users className="w-5 h-5" /> },
+        { title: 'Email Confirmation', desc: 'Get updates instantly', icon: <Mail className="w-5 h-5" /> }
+    ];
+    
+    const benefits = [
+        { title: '100% Satisfaction Guaranteed', desc: 'We promise exceptional service', icon: <CheckCircle className="w-6 h-6" /> },
+        { title: 'Secure and Safe', desc: 'Your data is secure with us', icon: <Lock className="w-6 h-6" /> },
+        { title: 'Team of Experts', desc: 'Get help from professionals', icon: <Users className="w-6 h-6" /> },
+        { title: 'One Stop Solution', desc: 'All your tax and business needs', icon: <Shield className="w-6 h-6" /> }
+    ];
 
-            <div className="container mx-auto px-4 sm:px-6 relative z-10">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                        Empowering Communities Through Support & Guidance
-                    </h1>
-                    <p className="text-lg sm:text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-10">
-                        Providing essential services to families and students from minority communities across the region
-                    </p>
-                    <div className="flex flex-wrap gap-4 justify-center">
-                        <a 
-                            href="https://wa.me/919987855127?text=Hello,%20I'm%20interested%20in%20learning%20more%20about%20your%20services."
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white text-blue-700 font-medium px-8 py-3 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300"
+    return (
+        <div className="font-sans antialiased text-gray-900 overflow-x-hidden">
+            {/* Navbar - Fixed & Transparent initially, solid after scroll */}
+            <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
+                <div className="container mx-auto px-4">
+                    <nav className="flex items-center justify-between">
+                        <div className="flex items-center">
+                            <div className={`flex items-center ${scrolled ? 'text-red-600' : 'text-white'}`}>
+                                <FileText className="w-8 h-8 mr-2" />
+                                <span className="text-2xl font-bold">Switch to Legal</span>
+                            </div>
+                        </div>
+                        
+                        <div className="hidden lg:flex items-center space-x-6">
+                            {services.slice(0, 5).map(service => (
+                                <button 
+                                    key={service.id}
+                                    onClick={() => handleTabChange(service.id)}
+                                    className={`flex items-center text-sm font-medium hover:text-red-500 ${scrolled ? 'text-gray-700' : 'text-white'} transition-colors`}
+                                >
+                                    <span className="ml-1">{service.title}</span>
+                                </button>
+                            ))}
+                            <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full shadow-lg flex items-center transition-all duration-300 transform hover:scale-105">
+                                <Phone className="w-4 h-4 mr-2" />
+                                Contact Us
+                            </button>
+                        </div>
+                        
+                        {/* Mobile menu button */}
+                        <button 
+                            className="lg:hidden text-2xl p-2" 
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
-                            Get Support
-                        </a>
-                        <a 
-                            href="https://wa.me/919987855127?text=Hello,%20I'm%20interested%20in%20learning%20more%20about%20your%20services."
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-transparent border-2 border-white text-white font-medium px-6 py-3 rounded-xl hover:bg-white/10 transform hover:-translate-y-1 transition duration-300"
-                        >
-                            Volunteer With Us
-                        </a>
+                            {mobileMenuOpen ? 
+                                <X className={`w-6 h-6 ${scrolled ? 'text-gray-800' : 'text-white'}`} /> : 
+                                <Menu className={`w-6 h-6 ${scrolled ? 'text-gray-800' : 'text-white'}`} />
+                            }
+                        </button>
+                    </nav>
+                    
+                    {/* Mobile menu */}
+                    {mobileMenuOpen && (
+                        <div className="lg:hidden bg-white shadow-xl rounded-lg mt-2 py-4 px-2 absolute top-full left-4 right-4 border border-gray-100">
+                            <div className="flex flex-col space-y-3">
+                                {services.slice(0, 5).map(service => (
+                                    <button 
+                                        key={service.id}
+                                        onClick={() => {
+                                            handleTabChange(service.id);
+                                            setMobileMenuOpen(false);
+                                        }}
+                                        className="flex items-center text-gray-800 hover:text-red-600 px-4 py-2 hover:bg-red-50 rounded-lg"
+                                    >
+                                        {service.icon}
+                                        <span className="ml-3">{service.title}</span>
+                                    </button>
+                                ))}
+                                <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg flex items-center justify-center mt-4">
+                                    <Phone className="w-4 h-4 mr-2" />
+                                    Contact Us
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </header>
+            
+            {/* Hero Section with Animation */}
+            <div className="relative bg-gradient-to-r from-red-600 via-red-500 to-yellow-500 text-white pt-32 pb-24 overflow-hidden">
+                {/* Animated circles in background */}
+                <div className="absolute top-20 right-10 w-64 h-64 bg-yellow-400 opacity-20 rounded-full animate-pulse"></div>
+                <div className="absolute bottom-10 left-10 w-32 h-32 bg-red-700 opacity-20 rounded-full animate-pulse delay-150"></div>
+                <div className="absolute top-40 left-1/3 w-24 h-24 bg-yellow-300 opacity-10 rounded-full animate-pulse delay-300"></div>
+                
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div className="text-center md:text-left">
+                            <h1 className="text-4xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                                Tax Filing <span className="text-yellow-300">Made Simple</span>
+                            </h1>
+                            <p className="text-lg mb-8 text-white opacity-90 max-w-lg">
+                                A hassle-free experience for everyone. No technical jargon – just simple steps to file your taxes and manage your business compliances.
+                            </p>
+                            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                                <button className="bg-white text-red-600 px-8 py-4 rounded-full font-semibold flex items-center shadow-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-105">
+                                    <FileText className="w-5 h-5 mr-2" />
+                                    File Your ITR Now
+                                </button>
+                                <button className="bg-red-700 hover:bg-red-800 text-white px-8 py-4 rounded-full font-semibold flex items-center shadow-lg border border-red-400 transition-all duration-300 transform hover:scale-105">
+                                    <Search className="w-5 h-5 mr-2" />
+                                    Explore Services
+                                </button>
+                            </div>
+                        </div>
+                        <div className="hidden md:block">
+                            <div className="relative transform transition-all hover:scale-105 duration-500">
+                                <div className="absolute -top-6 -left-6 bg-yellow-400 rounded-full w-24 h-24 flex items-center justify-center shadow-lg animate-pulse z-10">
+                                    <div className="text-red-600 font-bold rotate-12">
+                                        <div className="text-2xl">50%</div>
+                                        <div className="text-sm">OFF</div>
+                                    </div>
+                                </div>
+                                <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 text-gray-800 transform rotate-2 hover:rotate-0 transition-transform duration-300">
+                                    <div className="flex justify-between items-center mb-6">
+                                        <div className="flex space-x-2">
+                                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                                        </div>
+                                        <FileText className="w-8 h-8 text-red-600" />
+                                    </div>
+                                    <h3 className="text-2xl font-bold mb-4">Quick ITR Filing</h3>
+                                    <div className="space-y-4 mb-6">
+                                        <div className="flex items-center">
+                                            <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                                            <span>Easy Documentation</span>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                                            <span>Expert Assistance</span>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                                            <span>Fast Processing</span>
+                                        </div>
+                                    </div>
+                                    <button className="bg-gradient-to-r from-red-600 to-yellow-500 text-white px-6 py-3 rounded-full w-full flex items-center justify-center font-medium transition-all duration-300 hover:shadow-lg">
+                                        Start Filing <ArrowRight className="w-4 h-4 ml-2" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-gray-50"></div>
-            <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 80H1440V30C1200 60 720 0 480 30C240 60 120 30 0 10V80Z" fill="#F9FAFB"/>
-            </svg>
-            </section>
-
-            {/* Services Section */}
-            <section id="services" className="py-10 sm:py-20 container mx-auto px-4 sm:px-6">
-                <div className="text-center mb-10 sm:mb-16">
-                    <h6 className="text-blue-600 font-semibold mb-2">WHAT WE DO</h6>
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Our Key Initiatives and Services</h2>
-                    <p className="text-gray-600 max-w-2xl mx-auto px-2">
-                        Comprehensive support programs designed to empower communities through education, guidance, and essential services
-                    </p>
-                </div>
                 
-                {/* Service Navigation - Glassy Tabs - More mobile friendly */}
-                <div className="flex overflow-x-auto pb-4 mb-6 sm:mb-8 hide-scrollbar px-4 sm:px-0">
-                    <div className="flex space-x-1 sm:space-x-2 mx-auto p-1 bg-gray-100 bg-opacity-60 backdrop-blur-md rounded-xl">
+                {/* Wave separator */}
+                <div className="absolute bottom-0 left-0 right-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" className="w-full h-auto">
+                        <path fill="#ffffff" fillOpacity="1" d="M0,32L48,37.3C96,43,192,53,288,53.3C384,53,480,43,576,48C672,53,768,75,864,69.3C960,64,1056,32,1152,16C1248,0,1344,0,1392,0L1440,0L1440,100L1392,100C1344,100,1248,100,1152,100C1056,100,960,100,864,100C768,100,672,100,576,100C480,100,384,100,288,100C192,100,96,100,48,100L0,100Z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            {/* Services Showcase - Modern Grid */}
+            <div className="py-16">
+                <div className="container mx-auto px-4">
+                    <div className="text-center mb-12">
+                        <h2 className="inline-block text-3xl font-bold relative">
+                            Our Services
+                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full"></div>
+                        </h2>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
                         {services.map(service => (
-                            <button
+                            <button 
                                 key={service.id}
-                                onClick={() => setActiveTab(service.id)}
-                                className={`flex items-center px-2 sm:px-4 py-2 sm:py-3 rounded-lg transition-all duration-300 ${
+                                onClick={() => handleTabChange(service.id)}
+                                className={`group p-6 rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl relative overflow-hidden ${
                                     activeTab === service.id 
-                                        ? `bg-gradient-to-r ${service.color} text-white shadow-lg` 
-                                        : 'bg-white/80 hover:bg-white text-gray-700'
+                                    ? 'bg-gradient-to-br from-red-500 to-red-600 text-white' 
+                                    : 'bg-white hover:bg-gray-50'
                                 }`}
                             >
-                                <span className="text-lg sm:text-xl mr-1 sm:mr-2">{service.icon}</span>
-                                <span className="whitespace-nowrap text-xs sm:text-base font-medium">{service.title.split(' ')[0]}</span>
+                                {/* Background circle decoration */}
+                                <div className={`absolute -bottom-6 -right-6 w-24 h-24 rounded-full ${activeTab === service.id ? 'bg-red-400/30' : 'bg-red-100/50'} transition-all duration-300 group-hover:bg-red-500/20`}></div>
+                                
+                                <div className="relative z-10 flex flex-col items-center text-center">
+                                    <div className={`p-3 rounded-full mb-4 ${
+                                        activeTab === service.id 
+                                        ? 'bg-white/20' 
+                                        : 'bg-red-50 group-hover:bg-red-100'
+                                    } transition-colors duration-300`}>
+                                        <div className={`${activeTab === service.id ? 'text-white' : 'text-red-500'}`}>
+                                            {service.icon}
+                                        </div>
+                                    </div>
+                                    <h3 className={`font-bold mb-1 text-sm ${activeTab === service.id ? 'text-white' : ''}`}>
+                                        {service.title}
+                                    </h3>
+                                    <p className={`text-xs ${activeTab === service.id ? 'text-white/80' : 'text-gray-500'}`}>
+                                        {service.desc}
+                                    </p>
+                                </div>
                             </button>
                         ))}
                     </div>
                 </div>
-                
-                {/* Active Service Content - Improved for mobile */}
-                <div className="relative mb-8 sm:mb-12">
-                    {services.map(service => (
-                        <div 
-                            key={service.id}
-                            className={`transition-all duration-500 ${
-                                activeTab === service.id 
-                                    ? 'opacity-100 transform translate-x-0' 
-                                    : 'opacity-0 transform translate-x-8 pointer-events-none absolute inset-0'
-                            }`}
-                            style={{
-                                position: activeTab === service.id ? 'relative' : 'absolute'
-                            }}
-                        >
-                            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                                <div className="flex flex-col md:flex-row">
-                                    <div className={`w-full md:w-2/5 bg-gradient-to-br ${service.color} text-white p-6 sm:p-8 flex items-center justify-center`}>
-                                        <div className="text-center">
-                                            <span className="text-4xl sm:text-7xl inline-block mb-3 sm:mb-4">{service.icon}</span>
-                                            <h3 className="text-lg sm:text-3xl font-bold">{service.title}</h3>
-                                            <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/30">
-                                                <button className="bg-white/20 hover:bg-white/30 text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-lg backdrop-blur-sm transition duration-300 text-sm">
-                                                    Learn More
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="w-full md:w-3/5 p-6 sm:p-8 md:p-12 flex flex-col justify-between">
-                                        <div>
-                                            <h4 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-800">How We Help</h4>
-                                            <p className="text-sm sm:text-lg mb-3 sm:mb-6">{service.description}</p>
-                                            <p className="text-xs sm:text-base text-gray-600">{service.details}</p>
-                                        </div>
-                                        <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
-                                            <span className="px-2 sm:px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Support</span>
-                                            <span className="px-2 sm:px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-xs font-medium">Community</span>
-                                            <span className="px-2 sm:px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Empowerment</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Interactive Stats Section */}
-            <section id="impact" className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-blue-600 opacity-5 z-0">
-                    {/* Decorative grid pattern */}
-                    <div className="absolute inset-0" style={{
-                        backgroundImage: "linear-gradient(rgba(255,255,255,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px)",
-                        backgroundSize: "50px 50px"
-                    }}></div>
-                </div>
-                
-                <div className="container mx-auto px-4 sm:px-6 relative z-10">
-                    <div className="text-center mb-16">
-                        <h6 className="text-blue-600 font-semibold mb-2">OUR REACH</h6>
-                        <h2 className="text-3xl sm:text-4xl md:text-4xl font-bold mb-4">The Impact We've Made</h2>
-                        <p className="text-gray-600 max-w-2xl mx-auto">
-                            Working tirelessly to support our community through various initiatives
-                        </p>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-                        {impactStats.map((stat, index) => (
-                            <div 
-                                key={index} 
-                                className="bg-white rounded-2xl shadow-lg p-8 text-center transform hover:scale-105 hover:shadow-xl transition duration-300 border border-transparent hover:border-blue-100"
-                            >
-                                <div className="text-4xl mb-4">{stat.icon}</div>
-                                <p className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{stat.figure}</p>
-                                <p className="text-gray-600 mt-2 font-medium">{stat.label}</p>
-                            </div>
-                        ))}
-                    </div>
-                    
-                    {/* Testimonials */}
-                <div className="mt-20">
-                    <h3 className="text-2xl font-bold text-center mb-12">What Our Community Says</h3>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {testimonials.map((testimonial) => (
-                            <div 
-                                key={testimonial.id}
-                                className="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-blue-600 transform hover:-translate-y-2 transition duration-300"
-                            >
-                                <div className="flex items-center mb-4">
-                                    <img 
-                                        src={testimonial.image} 
-                                        alt={testimonial.name}
-                                        className="w-12 h-12 rounded-full mr-4"
-                                    />
-                                    <div>
-                                        <h4 className="font-bold">{testimonial.name}</h4>
-                                        <p className="text-sm text-gray-600">{testimonial.role}</p>
-                                    </div>
-                                </div>
-                                <p className="text-gray-700">"{testimonial.quote}"</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
             </div>
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="py-20 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
-        <div className="container mx-auto px-6">
-                <div className="md:flex md:items-center md:space-x-12">
-                    <div className="md:w-1/2 mb-10 md:mb-0">
-                        <div className="relative">
-                            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-1 inline-block">
-                                <div className="rounded-xl overflow-hidden">
-                                    <img 
-                                        src={ogteam}
-                                        alt="Organization Team" 
-                                        className="w-full h-auto mix-blend-overlay opacity-90"
-                                    />
-                                </div>
-                            </div>
-                            <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 w-48">
-                                <p className="font-bold text-blue-600 text-lg">10+ years</p>
-                                <p className="text-gray-700">Serving communities</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="md:w-1/2">
-                        <h6 className="text-blue-300 font-semibold mb-2">ABOUT US</h6>
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Mission & Vision</h2>
-                        <p className="text-blue-100 mb-6">
-                            We are committed to empowering underserved communities through comprehensive support programs, focusing on education, health, and social welfare. By providing essential services and guidance, we aim to create equal opportunities for growth and development.
-                        </p>
-                        <div className="space-y-4">
-                            <div className="flex items-start">
-                                <div className="bg-blue-500/20 p-2 rounded-lg mr-4">
-                                    <span className="text-xl">✨</span>
-                                </div>
-                                <div>
-                                    <h4 className="font-bold mb-1">Vision</h4>
-                                    <p className="text-blue-100">A society where every individual has access to equal opportunities and resources.</p>
-                                </div>
-                            </div>
-                            <div className="flex items-start">
-                                <div className="bg-blue-500/20 p-2 rounded-lg mr-4">
-                                    <span className="text-xl">🎯</span>
-                                </div>
-                                <div>
-                                    <h4 className="font-bold mb-1">Mission</h4>
-                                    <p className="text-blue-100">To support and uplift communities through education, health services, and skill development.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <button className="mt-8 bg-white text-blue-700 px-8 py-3 rounded-xl font-medium hover:shadow-lg transform hover:-translate-y-1 transition duration-300">
-                            Learn Our Story
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {/* Call to Action */}
-        <section className="py-20 bg-gradient-to-br from-indigo-600 via-blue-600 to-cyan-500 text-white relative overflow-hidden">
             
-                                <div className="absolute inset-0 z-0">
-                                    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                                        <defs>
-                                            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-                                            </pattern>
-                                        </defs>
-                                        <rect width="100%" height="100%" fill="url(#grid)" />
-                                    </svg>
-                                </div>
-                                
-                                <div className="container mx-auto px-6 text-center relative z-10">
-                                    <h2 className="text-4xl font-bold mb-6">Join Us in Making a Difference</h2>
-                                    <p className="text-xl max-w-2xl mx-auto mb-10">Whether you need support or want to volunteer, we welcome you to become part of our community</p>
-                                    <div className="flex flex-wrap gap-6 justify-center">
-                                        <a 
-                                            href="https://wa.me/919987855127?text=Hello,%20I'm%20interested%20in%20learning%20more%20about%20your%20services."
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="bg-white text-blue-700 font-medium px-10 py-4 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-                                            Get Support
-                                        </a>
-                                        <a href="https://wa.me/919987855127?text=Hello,%20I'm%20interested%20in%20learning%20more%20about%20your%20services."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-transparent border-2 border-white text-white font-medium px-8 py-4 rounded-xl hover:bg-white/10 transform hover:-translate-y-1 transition duration-300">
-                            Volunteer With Us
-                        </a>
-                                        <button
-                                                onClick={() => window.location.href = '/donate'}
-                                                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg hover:shadow-lg transition duration-300"
-                                        >
-                                                Donate
-                                        </button>
-                                    </div>
-                                </div>
-                                    </section>
+            {/* Stats Section with Animation */}
+            <div className="bg-gray-50 py-16 relative overflow-hidden">
+                {/* Background decoration */}
+                <div className="absolute top-0 left-0 w-full h-full">
+                    <div className="absolute top-10 right-10 w-40 h-40 rounded-full bg-red-100"></div>
+                    <div className="absolute bottom-10 left-10 w-56 h-56 rounded-full bg-yellow-100"></div>
+                </div>
+                
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="text-center mb-12">
+                        <h2 className="inline-block text-3xl font-bold relative">
+                            Why Choose <span className="text-red-600">Switch to Legal</span>
+                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-red-500 to-yellow-500 rounded-full"></div>
+                        </h2>
+                        <p className="text-gray-600 mt-4 max-w-lg mx-auto">Trusted by thousands of individuals and businesses across India</p>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        {stats.map((stat, index) => (
+                            <div key={index} className="bg-white rounded-2xl p-6 shadow-lg transform transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
+                                <div className="text-3xl md:text-4xl font-bold text-red-600 mb-2">{stat.number}</div>
+                                <div className="text-gray-600">{stat.title}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            
+            {/* About Section */}
+            <div className="py-16 bg-gradient-to-b from-white to-gray-50">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto text-center mb-16">
+                        <h2 className="text-3xl font-bold mb-6">Welcome to Switch to Legal</h2>
+                        <p className="text-gray-600 mb-8">
+                            Switch to Legal is about providing excellent services towards affordable online tax return filing solutions for individuals and businesses. We believe in using technology to attain accuracy that walks towards excellence and our service line is built with this thought. We are working to break the myth of tax return filing process that it is a time taking and hard procedure which is mandatory to complete.
+                        </p>
+                        <p className="text-gray-600">
+                            Switch to Legal is an Authorized e-Return Intermediary Registered with the Income-Tax Department, Government of India. We are a close concern of Telsys Web Infotech Private Limited and provide tax return filing services with our easy e-filing system.
+                        </p>
+                    </div>
 
-                                    {/* Contact Section */}
-                        <section id="contact" className="py-20 bg-white">
-                    <div className="container mx-auto px-6">
-                        <div className="text-center mb-16">
-                            <h6 className="text-blue-600 font-semibold mb-2">GET IN TOUCH</h6>
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h2>
-                            <p className="text-gray-600 max-w-2xl mx-auto">Have questions or need assistance? Reach out to our team</p>
+                    {/* Authorizations */}
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                        <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="bg-red-50 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto">
+                                <Shield className="w-8 h-8 text-red-500" />
+                            </div>
+                            <h3 className="text-lg font-semibold text-center mb-2">Authorized e-Return Intermediary</h3>
+                            <p className="text-gray-600 text-sm text-center">Registered with Income Tax Department for e-filing returns</p>
+                        </div>
+                        <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="bg-yellow-50 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto">
+                                <Award className="w-8 h-8 text-yellow-500" />
+                            </div>
+                            <h3 className="text-lg font-semibold text-center mb-2">Startup India Certified</h3>
+                            <p className="text-gray-600 text-sm text-center">Duly certified under GOI's Startup India scheme</p>
+                        </div>
+                        <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="bg-green-50 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto">
+                                <Building className="w-8 h-8 text-green-500" />
+                            </div>
+                            <h3 className="text-lg font-semibold text-center mb-2">iStart Supported</h3>
+                            <p className="text-gray-600 text-sm text-center">Government of Rajasthan Initiative for Startups</p>
+                        </div>
+                        <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="bg-blue-50 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto">
+                                <Users className="w-8 h-8 text-blue-500" />
+                            </div>
+                            <h3 className="text-lg font-semibold text-center mb-2">Digital India</h3>
+                            <p className="text-gray-600 text-sm text-center">Supporting Government Making India Digital</p>
+                        </div>
+                    </div>
+
+                    {/* Why Choose Us */}
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold mb-12">Why Choose Us</h2>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {stats.map((stat, index) => (
+                                <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                    <div className="text-3xl font-bold text-red-600 mb-2">{stat.number}</div>
+                                    <div className="text-gray-600">{stat.title}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Services Grid */}
+                    <div className="grid md:grid-cols-3 gap-8 mb-16">
+                        <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                            <div className="bg-red-50 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                                <FileText className="w-8 h-8 text-red-500" />
+                            </div>
+                            <h3 className="text-xl font-semibold mb-4">ITR Filing Assistance</h3>
+                            <p className="text-gray-600 mb-4">Get Expert assistance in tax filling for salaried and self-employed individuals, NRIs, Capital gains, and more services.</p>
+                            <button className="text-red-600 font-semibold flex items-center hover:text-red-700">
+                                Learn More <ArrowRight className="w-4 h-4 ml-2" />
+                            </button>
+                        </div>
+                        <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                            <div className="bg-yellow-50 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                                <Building className="w-8 h-8 text-yellow-500" />
+                            </div>
+                            <h3 className="text-xl font-semibold mb-4">Business Management</h3>
+                            <p className="text-gray-600 mb-4">Business Management is the coordination and organization of business activities. Business managers oversee operations and help employees reach their top productivity levels.</p>
+                            <button className="text-red-600 font-semibold flex items-center hover:text-red-700">
+                                Learn More <ArrowRight className="w-4 h-4 ml-2" />
+                            </button>
+                        </div>
+                        <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                            <div className="bg-green-50 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                                <Shield className="w-8 h-8 text-green-500" />
+                            </div>
+                            <h3 className="text-xl font-semibold mb-4">Legal Services</h3>
+                            <p className="text-gray-600 mb-4">Preparation of planning memo of appeal, paper book including printing and translation of documents in legal proceedings, Drafting of legal documents special leave petition etc.</p>
+                            <button className="text-red-600 font-semibold flex items-center hover:text-red-700">
+                                Learn More <ArrowRight className="w-4 h-4 ml-2" />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Security Features */}
+                    <div className="bg-gradient-to-r from-red-50 to-yellow-50 rounded-2xl p-8 mb-16">
+                        <h2 className="text-3xl font-bold text-center mb-12">Committed to Security</h2>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div className="bg-white p-6 rounded-xl shadow-md">
+                                <div className="flex items-center mb-4">
+                                    <Lock className="w-6 h-6 text-red-500 mr-3" />
+                                    <h3 className="font-semibold">Encryption</h3>
+                                </div>
+                                <p className="text-gray-600 text-sm">Your data is transmitted across SSL certified pathways. We are SOC 2 complaint.</p>
+                            </div>
+                            <div className="bg-white p-6 rounded-xl shadow-md">
+                                <div className="flex items-center mb-4">
+                                    <Shield className="w-6 h-6 text-red-500 mr-3" />
+                                    <h3 className="font-semibold">Privacy</h3>
+                                </div>
+                                <p className="text-gray-600 text-sm">We do not share your or your client's data with unaffiliated third parties for their own purpose.</p>
+                            </div>
+                            <div className="bg-white p-6 rounded-xl shadow-md">
+                                <div className="flex items-center mb-4">
+                                    <FileText className="w-6 h-6 text-red-500 mr-3" />
+                                    <h3 className="font-semibold">Data Storage</h3>
+                                </div>
+                                <p className="text-gray-600 text-sm">We use ISO 2000:2001 certified data centric which are quarterly VAPT tested and externally audited.</p>
+                            </div>
+                            <div className="bg-white p-6 rounded-xl shadow-md">
+                                <div className="flex items-center mb-4">
+                                    <CheckCircle className="w-6 h-6 text-red-500 mr-3" />
+                                    <h3 className="font-semibold">Safe & Secure</h3>
+                                </div>
+                                <p className="text-gray-600 text-sm">Our aim is to enable maximum security, through multiple layers, and to minimize the risk of anyone's data being misused.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Satisfaction Guarantee */}
+                    <div className="bg-white rounded-2xl shadow-xl p-8 text-center">
+                        <div className="max-w-2xl mx-auto">
+                            <h2 className="text-3xl font-bold mb-6">100% Satisfaction Guaranteed</h2>
+                            <p className="text-gray-600 mb-8">
+                                We promise to provide exceptional service, in case you are not satisfied with the service you purchased, we will provide on unconditional refund of Switch to Legal. In service fee you paid.
+                            </p>
+                            <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white px-8 py-4 rounded-full font-semibold flex items-center justify-center mx-auto shadow-lg transition-all duration-300 transform hover:scale-105">
+                                Get Started Now <ArrowRight className="w-5 h-5 ml-2" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {/* Contact Form Section */}
+            <div className="bg-gray-50 py-16">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-3xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
+                            <p className="text-gray-600">Have questions? We're here to help!</p>
                         </div>
                         
-                        <div className="md:flex md:space-x-8 items-center">
-                            <div className="md:w-1/2 mb-10 md:mb-0">
-                                <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 h-full">
-                            <h3 className="text-2xl font-bold mb-6 text-gray-800">Contact Information</h3>
-                            <div className="space-y-6">
-                                <div className="flex items-start">
-                                    <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                                        <span className="text-blue-600 text-xl">📍</span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold mb-1 text-gray-800">Address</h4>
-                                        <p className="text-gray-600">104, My Home CHS LTD near,
- ST. Lawrence High School,
-Marol Andheri East, Mumbai 40059, Maharashtra, India</p>
-                                    </div>
+                        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl p-8">
+                            <div className="grid md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label className="block text-gray-700 font-medium mb-2">Name</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
+                                        required
+                                    />
                                 </div>
-                                <div className="flex items-start">
-                                    <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                                        <span className="text-blue-600 text-xl">📱</span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold mb-1 text-gray-800">Phone</h4>
-                                        <p className="text-gray-600">+91 99878 55127</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start">
-                                    <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                                        <span className="text-blue-600 text-xl">✉️</span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold mb-1 text-gray-800">Email</h4>
-                                        <p className="text-gray-600">mhwt2021mumbai@gmail.com</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start">
-                                    <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                                        <span className="text-blue-600 text-xl">🕒</span>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold mb-1 text-gray-800">Working Hours</h4>
-                                        <p className="text-gray-600">Monday - Saturday: 9:00 AM - 6:00 PM</p>
-                                    </div>
+                                <div>
+                                    <label className="block text-gray-700 font-medium mb-2">Phone</label>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
+                                        required
+                                    />
                                 </div>
                             </div>
-                                </div>
+                            
+                            <div className="mb-6">
+                                <label className="block text-gray-700 font-medium mb-2">Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
+                                    required
+                                />
                             </div>
-                            <div className="md:w-1/2">
-                                <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-                            <div className="mb-8">
-                                <div className="bg-green-500 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                                        <path d="M12 0C5.373 0 0 5.373 0 12c0 6.628 5.373 12 12 12 6.627 0 12-5.372 12-12 0-6.627-5.373-12-12-12zm6.654 17.041c-.292.868-1.652 1.585-2.769 1.762-.732.115-1.688.106-2.681-.157-1.233-.328-2.793-.903-4.304-2.128-2.442-1.983-4.663-5.448-4.663-7.376 0-2.147 1.077-3.815 1.532-4.356.298-.354.649-.501 1.065-.501.364 0 .728.006.999.015.334.011.622.005.815.462.243.576.712 2.006.796 2.425.085.418.129.735-.221 1.154-.346.415-.675.678-.975.982-.162.162-.387.41-.245.82.141.41.596 1.512 1.456 2.483 1.066 1.205 1.953 1.585 2.339 1.771.385.187.643.152.877-.095.236-.247.921-1.08 1.176-1.452.254-.372.51-.309.847-.199.337.11 2.145 1.014 2.519 1.2.373.184.619.275.705.428.086.152.086 1.012-.207 1.982z" clipRule="evenodd" fillRule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <h3 className="text-2xl font-bold mb-4 text-gray-800">Connect With Us Instantly</h3>
-                                <p className="text-gray-600 mb-8">Have questions or need immediate assistance? Connect with our team directly on WhatsApp for quick response.</p>
+                            
+                            <div className="mb-6">
+                                <label className="block text-gray-700 font-medium mb-2">Subject</label>
+                                <input
+                                    type="text"
+                                    name="subject"
+                                    value={formData.subject}
+                                    onChange={handleInputChange}
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
+                                    required
+                                />
                             </div>
-                            <a 
-                                href="https://wa.me/919987855127?text=Hello,%20I'm%20interested%20in%20learning%20more%20about%20your%20services." 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-medium px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-300 w-full md:w-auto"
+                            
+                            <div className="mb-6">
+                                <label className="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleInputChange}
+                                    rows="4"
+                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
+                                    required
+                                ></textarea>
+                            </div>
+                            
+                            <button
+                                type="submit"
+                                className="w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white px-8 py-4 rounded-full font-semibold flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-105"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="white" viewBox="0 0 24 24">
-                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                                </svg>
-                                Chat With Us on WhatsApp
-                            </a>
-                            <div className="mt-6 text-gray-500">
-                                <p>Available Monday-Saturday, 9 AM - 6 PM</p>
+                                Send Message <ArrowRight className="w-5 h-5 ml-2" />
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            {/* Footer */}
+            <footer className="bg-gray-900 text-white py-12">
+                <div className="container mx-auto px-4">
+                    <div className="grid md:grid-cols-4 gap-8">
+                        <div>
+                            <div className="flex items-center mb-4">
+                                <FileText className="w-8 h-8 mr-2 text-red-500" />
+                                <span className="text-2xl font-bold">Switch to Legal</span>
                             </div>
-                                </div>
-                            </div>
+                            <p className="text-gray-400">Your trusted partner for all tax and business compliance needs.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+                            <ul className="space-y-2">
+                                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 className="text-lg font-semibold mb-4">Services</h3>
+                            <ul className="space-y-2">
+                                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">ITR Filing</a></li>
+                                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">GST Registration</a></li>
+                                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Company Registration</a></li>
+                                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Trademark Registration</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+                            <ul className="space-y-2">
+                                <li className="flex items-center text-gray-400">
+                                    <Phone className="w-5 h-5 mr-2" />
+                                    +91 1234567890
+                                </li>
+                                <li className="flex items-center text-gray-400">
+                                    <Mail className="w-5 h-5 mr-2" />
+                                    info@webonlineca.com
+                                </li>
+                                <li className="flex items-center text-gray-400">
+                                    <MessageSquare className="w-5 h-5 mr-2" />
+                                    Live Chat Support
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                        </section>
-
-<Footer />
-    </div>
-);
-};
-
-export default HomePage;
+                    
+                    <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                        <p>&copy; {new Date().getFullYear()} Switch to Legal. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    );
+}
