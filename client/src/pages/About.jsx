@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MessageCircle, Users, FileText, Award, ArrowRight, Star, Shield, Zap, Globe, CheckCircle, Menu, X, ExternalLink, Building2, CreditCard, Plane, Palette, Scale, Building } from 'lucide-react';
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
+
 
 const SwitchToLegal = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -154,71 +157,12 @@ const SwitchToLegal = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg py-3' : 'bg-white/95 backdrop-blur-sm py-4'}`}>
-        <div className="container mx-auto px-4">
-          <nav className="flex items-center justify-between">
-            <div className="flex items-center">
-              <Link to="/" className="flex items-center text-slate-800">
-                <div className="bg-blue-600 p-2 rounded-lg mr-3">
-                  <Scale className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <span className="text-xl font-bold">Switch to Legal</span>
-                  <div className="text-xs text-slate-500 font-medium">Professional Services</div>
-                </div>
-              </Link>
-            </div>
-
-            <div className="hidden lg:flex items-center space-x-8">
-              <Link to="/" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group">
-                Home
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
-              </Link>
-              <Link to="/about" className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group">
-                About
-                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
-              </Link>
-              <Link to="/contact" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-medium flex items-center transition-all duration-300 shadow-sm">
-                <Phone className="w-4 h-4 mr-2" />
-                Contact Us
-              </Link>
-            </div>
-
-            <button 
-              className="lg:hidden p-2" 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? 
-                <X className="w-6 h-6 text-slate-800" /> : 
-                <Menu className="w-6 h-6 text-slate-800" />
-              }
-            </button>
-          </nav>
-
-          {/* Mobile menu */}
-          {isMenuOpen && (
-            <div className="lg:hidden bg-white shadow-xl rounded-lg mt-4 py-4 border border-slate-200">
-              <div className="flex flex-col space-y-2 px-4">
-                <Link to="/" className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors">
-                  <FileText className="w-4 h-4 text-slate-400 mr-3" />
-                  Home
-                </Link>
-                <Link to="/about" className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors">
-                  <Building className="w-4 h-4 text-slate-400 mr-3" />
-                  About
-                </Link>
-                <Link to="/contact" className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors">
-                  <Phone className="w-4 h-4 text-slate-400 mr-3" />
-                  Contact Us
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </header>
+      <Navbar
+        isScrolled={isScrolled}
+      />
 
       {/* Main Content */}
-      <div className="pt-24">
+      <div className="pt-16">
         {/* Hero Section */}
         <section className="pt-20 pb-12 px-4 bg-gradient-to-br from-blue-50 via-white to-purple-50">
           <div className="max-w-6xl mx-auto text-center">
@@ -395,86 +339,7 @@ const SwitchToLegal = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-12">
-            <div>
-              <div className="flex items-center mb-4">
-                <div className="bg-blue-600 p-2 rounded-lg mr-3">
-                  <Scale className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-xl font-bold">Switch to Legal</span>
-              </div>
-              <p className="text-slate-400 text-sm mb-4">
-                Comprehensive Tax, Legal & Compliance Solutions for Businesses and Individuals.
-              </p>
-              <div className="flex space-x-3 mt-4">
-                <a href="tel:+911234567890" className="hover:text-blue-400 transition-colors">
-                  <Phone className="w-5 h-5" />
-                </a>
-                <a href="mailto:info@switchtolegal.com" className="hover:text-blue-400 transition-colors">
-                  <Mail className="w-5 h-5" />
-                </a>
-                <a href="https://wa.me/911234567890" className="hover:text-blue-400 transition-colors">
-                  <MessageCircle className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Services</h4>
-              <ul className="space-y-2 text-slate-400 text-sm">
-                <li><a href="#" className="hover:text-blue-400 transition-colors">ITR Filing</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">GST Registration</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">DSC</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Company Registration</a></li>
-                <li><a href="#" className="hover:text-blue-400 transition-colors">Trademark</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Company</h4>
-              <ul className="space-y-2 text-slate-400 text-sm">
-                <li><Link to="/about" className="hover:text-blue-400 transition-colors">About Us</Link></li>
-                <li><Link to="/contact" className="hover:text-blue-400 transition-colors">Contact</Link></li>
-                <li><a href="#careers" className="hover:text-blue-400 transition-colors">Careers</a></li>
-                <li><a href="#privacy" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Contact</h4>
-              <ul className="space-y-2 text-slate-400 text-sm">
-                <li>
-                  <span className="flex items-center">
-                    <Phone className="w-4 h-4 mr-2" /> +91 12345 67890
-                  </span>
-                </li>
-                <li>
-                  <span className="flex items-center">
-                    <Mail className="w-4 h-4 mr-2" /> info@switchtolegal.com
-                  </span>
-                </li>
-                <li>
-                  <span className="flex items-center">
-                    <Building className="w-4 h-4 mr-2" /> Jaipur, Rajasthan, India
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-slate-800 pt-8 text-center text-slate-500 text-sm">
-            &copy; {new Date().getFullYear()} Switch to Legal. All rights reserved.
-            <br />
-            Designed and Developed by{' '}
-            <a
-              href="https://Tarlose.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 font-semibold underline hover:text-blue-300 transition-colors"
-            >
-              Tarlose
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

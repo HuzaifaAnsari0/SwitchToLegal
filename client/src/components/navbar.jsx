@@ -64,10 +64,13 @@ const Navbar = () => {
               Company Registration
               <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
             </button>
-            <button className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group">
-              Trademark
+            <Link 
+              to="/about"
+              className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group"
+            >
+              About
               <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
-            </button>
+            </Link>
             <Link 
               to="/contact"
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-medium flex items-center transition-all duration-300 shadow-sm"
@@ -117,10 +120,13 @@ const Navbar = () => {
                 <Building className="w-4 h-4 text-slate-400 mr-3" />
                 Company Registration
               </button>
-              <button className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors">
+              <Link 
+                to="/about"
+                className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors"
+              >
                 <FileText className="w-4 h-4 text-slate-400 mr-3" />
-                Trademark
-              </button>
+                About
+              </Link>
               <Link 
                 to="/contact"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg flex items-center justify-center mt-4"
