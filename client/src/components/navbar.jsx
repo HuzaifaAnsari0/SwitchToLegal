@@ -1,178 +1,139 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../assets/logo.jpeg'; // Update the path to your logo file
+import { Link } from 'react-router-dom';
+import { 
+  Phone,
+  Scale,
+  Menu,
+  X,
+  FileText,
+  Building,
+  Shield
+} from 'lucide-react';
 
 const Navbar = () => {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-    const [activeSection, setActiveSection] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    const navItems = [
-        { id: 'home', label: 'Home' },
-        { id: 'about', label: 'About' },
-        { id: 'services', label: 'Services' },
-        { id: 'contact', label: 'Contact' },
-    ];
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-
-        // Set active section based on current URL on initial load and when URL changes
-        const determineActiveSection = () => {
-            const path = window.location.pathname;
-            const hash = window.location.hash.replace('#', '');
-            
-            if (path === '/about') {
-                setActiveSection('about');
-            } else if (path === '/') {
-                setActiveSection(hash || 'home');
-            } else if (path === '/donate') {
-                setActiveSection('donate');
-            } else if (hash) {
-                setActiveSection(hash);
+  return (
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg py-3' : 'bg-white/95 backdrop-blur-sm py-4'}`}>
+      <div className="container mx-auto px-4">
+        <nav className="flex items-center justify-between">
+          <div className="flex items-center">
+            <Link to="/" className="flex items-center text-slate-800">
+              <div className="bg-blue-600 p-2 rounded-lg mr-3">
+                <Scale className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <span className="text-xl font-bold">Switch to Legal</span>
+                <div className="text-xs text-slate-500 font-medium">Professional Services</div>
+              </div>
+            </Link>
+          </div>
+          
+          <div className="hidden lg:flex items-center space-x-8">
+            <Link 
+              to="/itr"
+              className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group"
+            >
+              ITR Filing
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
+            </Link>
+            <Link
+              to="/gst-registration"
+              className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group"
+            >
+              GST Registration
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
+            </Link>
+            <Link 
+              to="/dsc-inquiry"
+              className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group"
+            >
+              DSC
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
+            </Link>
+            <button className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group">
+              Company Registration
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
+            </button>
+            <button className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group">
+              Trademark
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
+            </button>
+            <Link 
+              to="/contact"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-medium flex items-center transition-all duration-300 shadow-sm"
+            >
+              <Phone className="w-4 h-4 mr-2" />
+              Contact Us
+            </Link>
+          </div>
+          
+          <button 
+            className="lg:hidden p-2" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? 
+              <X className="w-6 h-6 text-slate-800" /> : 
+              <Menu className="w-6 h-6 text-slate-800" />
             }
-        };
-
-        determineActiveSection();
-        window.addEventListener('scroll', handleScroll);
-        window.addEventListener('hashchange', determineActiveSection);
-        
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            window.removeEventListener('hashchange', determineActiveSection);
-        };
-    }, []);
-
-    const scrollToSection = (id) => {
-        const section = document.getElementById(id);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-            setActiveSection(id);
-        }
-        setMobileMenuOpen(false);
-    };
-
-    const handleNavItemClick = (item) => {
-        setActiveSection(item.id);
-        
-        if (item.id === 'about') {
-            window.location.href = '/about';
-        } else if (item.id === 'home') {
-            window.location.href = '/';
-        } else {
-            window.location.href = `/#${item.id}`;
-        }
-    };
-
-    return (
-        <nav
-            className={`fixed w-full z-50 transition-all duration-300 ${
-                scrolled ? 'bg-white/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
-            }`}
-        >
-            <div className="container mx-auto px-4">
-                <div className="flex items-center justify-between h-20">
-                 
-                    <div className="flex items-center space-x-2">
-                        <div
-                            className={`h-12 w-12 rounded-lg overflow-hidden ${scrolled ? 'shadow-md' : ''}`}
-                        >
-                            <img src={logo} alt="Trust Logo" className="w-full h-full object-cover" />
-                        </div>
-                        <div className="font-bold text-xl leading-tight">
-                            <span className="text-orange-500">Marol </span>
-                            <span className={scrolled ? 'text-gray-800' : 'text-white'}>Human </span>
-                            <span className="text-green-600">Welfare Trust</span>
-                        </div>
-                    </div>
-
-                    <div className="flex items-center justify-center flex-1">
-                        {/* Desktop Navigation - Centered */}
-                        <div className="hidden md:flex items-center justify-center space-x-1 pr-32">
-                            {navItems.map((item) => (
-                                <button
-                                    key={item.id}
-                                    onClick={() => handleNavItemClick(item)}
-                                    className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                                        activeSection === item.id
-                                            ? 'bg-blue-600 text-white font-medium'
-                                            : scrolled
-                                            ? 'text-gray-700 hover:bg-gray-100'
-                                            : 'text-white hover:bg-white/10'
-                                    }`}
-                                >
-                                    {item.label}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="hidden md:block">
-                        <button
-                            onClick={() => {
-                                setActiveSection('donate');
-                                window.location.href = '/donate';
-                            }}
-                            className={`px-6 py-2 rounded-lg transition duration-300 ${
-                                activeSection === 'donate'
-                                ? 'bg-blue-600 text-white font-medium'
-                                : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg'
-                            }`}
-                        >
-                            Donate
-                        </button>
-                    </div>
-
-                    {/* Mobile menu button */}
-                    <div className="md:hidden">
-                        <button
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className={`p-2 rounded-lg ${
-                                scrolled ? 'text-gray-800 hover:bg-gray-100' : 'text-white hover:bg-white/10'
-                            }`}
-                        >
-                            {mobileMenuOpen ? '✕' : '☰'}
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            {/* Mobile Navigation */}
-            {mobileMenuOpen && (
-                <div className="md:hidden bg-white shadow-lg animate-slideDown">
-                    <div className="px-4 py-2 space-y-1">
-                        {navItems.map((item) => (
-                            <button
-                                key={item.id}
-                                onClick={() => handleNavItemClick(item)}
-                                className={`block w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
-                                    activeSection === item.id
-                                        ? 'bg-blue-600 text-white'
-                                        : 'text-gray-700 hover:bg-gray-100'
-                                }`}
-                            >
-                                {item.label}
-                            </button>
-                        ))}
-                        <button
-                            onClick={() => {
-                                setActiveSection('donate');
-                                window.location.href = '/donate';
-                            }}
-                            className={`block w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
-                                activeSection === 'donate'
-                                ? 'bg-blue-600 text-white'
-                                : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg'
-                            }`}
-                        >
-                            Donate
-                        </button>
-                    </div>
-                </div>
-            )}
+          </button>
         </nav>
-    );
+        
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden bg-white shadow-xl rounded-lg mt-4 py-4 border border-slate-200">
+            <div className="flex flex-col space-y-2 px-4">
+              <Link 
+                to="/itr"
+                className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors"
+              >
+                <FileText className="w-4 h-4 text-slate-400 mr-3" />
+                ITR Filing
+              </Link>
+              <Link
+                to="/gst-registration"
+                className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors"
+              >
+                <Building className="w-4 h-4 text-slate-400 mr-3" />
+                GST Registration
+              </Link>
+              <Link 
+                to="/dsc-inquiry"
+                className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors"
+              >
+                <Shield className="w-4 h-4 text-slate-400 mr-3" />
+                DSC
+              </Link>
+              <button className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors">
+                <Building className="w-4 h-4 text-slate-400 mr-3" />
+                Company Registration
+              </button>
+              <button className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors">
+                <FileText className="w-4 h-4 text-slate-400 mr-3" />
+                Trademark
+              </button>
+              <Link 
+                to="/contact"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg flex items-center justify-center mt-4"
+              >
+                <Phone className="w-4 h-4 mr-2" />
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </header>
+  );
 };
 
-export default Navbar;
+export default Navbar;    

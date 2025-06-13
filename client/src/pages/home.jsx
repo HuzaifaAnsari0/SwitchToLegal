@@ -34,6 +34,7 @@ import {
     Home,
     Banknote
 } from 'lucide-react';
+import Navbar from '../components/navbar';
 
 export default function CorporateLegalUI() {
     const [scrolled, setScrolled] = useState(false);
@@ -123,104 +124,8 @@ export default function CorporateLegalUI() {
     return (
         <div className="font-sans antialiased text-gray-900 overflow-x-hidden bg-white">
             {/* Corporate Header */}
-            <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg py-3' : 'bg-white/95 backdrop-blur-sm py-4'}`}>
-                <div className="container mx-auto px-4">
-                    <nav className="flex items-center justify-between">
-                        <div className="flex items-center">
-                            <Link to="/" className="flex items-center text-slate-800">
-                                <div className="bg-blue-600 p-2 rounded-lg mr-3">
-                                    <Scale className="w-6 h-6 text-white" />
-                                </div>
-                                <div>
-                                    <span className="text-xl font-bold">Switch to Legal</span>
-                                    <div className="text-xs text-slate-500 font-medium">Professional Services</div>
-                                </div>
-                            </Link>
-                        </div>
-                        
-                        <div className="hidden lg:flex items-center space-x-8">
-                            {services.slice(0, 5).map(service => (
-                                service.id === 'dsc' ? (
-                                    <Link
-                                        key={service.id}
-                                        to="/dsc-inquiry"
-                                        className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group"
-                                    >
-                                        {service.title}
-                                        <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
-                                    </Link>
-                                ) : (
-                                    <button 
-                                        key={service.id}
-                                        onClick={() => handleTabChange(service.id)}
-                                        className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group"
-                                    >
-                                        {service.title}
-                                        <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
-                                    </button>
-                                )
-                            ))}
-                            <Link 
-                                to="/contact"
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-medium flex items-center transition-all duration-300 shadow-sm"
-                            >
-                                <Phone className="w-4 h-4 mr-2" />
-                                Contact Us
-                            </Link>
-                        </div>
-                        
-                        <button 
-                            className="lg:hidden p-2" 
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        >
-                            {mobileMenuOpen ? 
-                                <X className="w-6 h-6 text-slate-800" /> : 
-                                <Menu className="w-6 h-6 text-slate-800" />
-                            }
-                        </button>
-                    </nav>
-                    
-                    {/* Mobile menu */}
-                    {mobileMenuOpen && (
-                        <div className="lg:hidden bg-white shadow-xl rounded-lg mt-4 py-4 border border-slate-200">
-                            <div className="flex flex-col space-y-2 px-4">
-                                {services.slice(0, 5).map(service => (
-                                    service.id === 'dsc' ? (
-                                        <Link
-                                            key={service.id}
-                                            to="/dsc-inquiry"
-                                            className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors"
-                                        >
-                                            <div className="text-slate-400 mr-3">{service.icon}</div>
-                                            <span>{service.title}</span>
-                                        </Link>
-                                    ) : (
-                                        <button 
-                                            key={service.id}
-                                            onClick={() => {
-                                                handleTabChange(service.id);
-                                                setMobileMenuOpen(false);
-                                            }}
-                                            className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors"
-                                        >
-                                            <div className="text-slate-400 mr-3">{service.icon}</div>
-                                            <span>{service.title}</span>
-                                        </button>
-                                    )
-                                ))}
-                                <Link 
-                                    to="/contact"
-                                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg flex items-center justify-center mt-4"
-                                >
-                                    <Phone className="w-4 h-4 mr-2" />
-                                    Contact Us
-                                </Link>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            </header>
-            
+            <Navbar />
+
             {/* Professional Hero Section */}
             <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white pt-28 pb-20">
                 <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
