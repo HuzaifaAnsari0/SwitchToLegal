@@ -9,6 +9,7 @@ import {
   Building,
   Shield
 } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -28,8 +29,8 @@ const Navbar = () => {
         <nav className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="flex items-center text-slate-800">
-              <div className="bg-blue-600 p-2 rounded-lg mr-3">
-                <Scale className="w-6 h-6 text-white" />
+              <div className=" mr-3">
+                <img src={logo} alt="Logo" className="w-14 h-14" />
               </div>
               <div>
                 <span className="text-xl font-bold">Switch to Legal</span>
@@ -40,7 +41,7 @@ const Navbar = () => {
           
           <div className="hidden lg:flex items-center space-x-8">
             <Link 
-              to="/itr"
+              to="/itr-filing"
               className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors relative group"
             >
               ITR Filing

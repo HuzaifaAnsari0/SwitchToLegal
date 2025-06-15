@@ -10,16 +10,17 @@ import {
     Shield,
     Award
 } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 const Footer = () => {
     return (
-        <footer className="bg-slate-900 text-white py-16">
+        <footer className="bg-slate-900 text-white py-12">
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-4 gap-8 mb-12">
                     <div>
                         <div className="flex items-center mb-4">
-                            <div className="bg-blue-600 p-2 rounded-lg mr-3">
-                                <Scale className="w-6 h-6 text-white" />
+                            <div className=" mr-3">
+                                <img src={logo} alt="Logo" className="w-24 h-24" />
                             </div>
                             <span className="text-xl font-bold">Switch to Legal</span>
                         </div>
@@ -42,14 +43,14 @@ const Footer = () => {
                         <h4 className="font-semibold mb-4">Services</h4>
                         <ul className="space-y-2 text-slate-400 text-sm">
                             <li>
-                                <button className="hover:text-blue-400 transition-colors">
+                                <Link to="/itr-filing" className="hover:text-blue-400 transition-colors">
                                     ITR Filing
-                                </button>
+                                </Link>
                             </li>
                             <li>
-                                <button className="hover:text-blue-400 transition-colors">
+                                <Link to="/gst-registration" className="hover:text-blue-400 transition-colors">
                                     GST Registration
-                                </button>
+                                </Link>
                             </li>
                             <li>
                                 <Link to="/dsc-inquiry" className="hover:text-blue-400 transition-colors">
@@ -62,9 +63,9 @@ const Footer = () => {
                                 </button>
                             </li>
                             <li>
-                                <button className="hover:text-blue-400 transition-colors">
-                                    Trademark
-                                </button>
+                                <Link to="/ngo" className="hover:text-blue-400 transition-colors">
+                                    Our NGO
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -82,6 +83,9 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a href="#privacy" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#terms" className="hover:text-blue-400 transition-colors">Terms of Service</a>
                             </li>
                         </ul>
                     </div>

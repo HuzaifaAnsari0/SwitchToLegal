@@ -1,46 +1,49 @@
 import React, { useState } from 'react';
-import { CheckCircle, Shield, Clock, Users, FileText, Lock, Zap, Award, Globe, ArrowRight, ChevronDown, ChevronUp, Phone, Mail, MapPin, User } from 'lucide-react';
+import {
+  CheckCircle, Shield, Clock, Users, FileText, Lock, Zap, Award, Globe, ArrowRight, ChevronDown, ChevronUp, Phone, Mail, MapPin, User
+} from 'lucide-react';
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
 import ServiceForm from '../components/ServiceForm';
 
+const benefits = [
+  { icon: Shield, title: 'No Cascading Tax', desc: 'Eliminates tax-on-tax effect' },
+  { icon: Award, title: 'Higher Threshold', desc: 'Small businesses benefit from higher limits' },
+  { icon: Lock, title: 'Simple Compliance', desc: 'Easy online filing and fewer returns' },
+  { icon: Clock, title: 'Faster Processing', desc: 'Quick confirmation and seamless process' }
+];
 
-const DSCApplication = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    mobile: '',
-    email: '',
-    address: '',
-    referralCode: ''
-  });
-  
+const faqs = [
+  {
+    q: 'Who is required to file GST Returns under the GST Act?',
+    a: 'Any individual or business registered under GST must file GST returns regularly.'
+  },
+  {
+    q: 'When must I upload my invoice on the GST portal?',
+    a: 'Invoices must be uploaded as per return deadlines – usually monthly or quarterly.'
+  },
+  {
+    q: 'Can I revise my GST return?',
+    a: 'No. GST returns once filed cannot be revised. Corrections must be made in subsequent returns.'
+  },
+  {
+    q: 'What happens if I miss the filing deadline?',
+    a: 'A late fee is applicable. Also, you won’t be able to file the next period\'s return until the pending one is completed.'
+  }
+];
+
+const requiredDocs = [
+  'Sell Invoices (B2B and B2C)',
+  'Purchase Invoices',
+  'Bank Statement',
+  'Invoices to GSTIN-holders',
+  'Consolidated inter-state sales data',
+  'HSN-wise summary of goods',
+  'Credit/Debit notes or Advance Receipts'
+];
+
+const GSTReturnPage = () => {
   const [expandedFaq, setExpandedFaq] = useState(null);
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = () => {
-    console.log('Form submitted:', formData);
-    alert('Application submitted successfully!');
-  };
-
-  const benefits = [
-    { icon: Shield, title: 'Authentication', desc: 'Verifies identity in online transactions' },
-    { icon: Clock, title: 'Reduced Time & Cost', desc: 'No physical signatures required' },
-    { icon: Lock, title: 'Data Integrity', desc: 'Prevents document tampering' },
-    { icon: Award, title: 'Legal Validity', desc: 'Builds trust and credibility' }
-  ];
-
-  const faqs = [
-    { q: 'What is a Digital Signature Certificate (DSC)?', a: 'A secure digital key used to verify identity and authenticate documents online.' },
-    { q: 'How long does it take to get the DSC?', a: 'Typically issued within 30 minutes of verification.' },
-    { q: 'Is physical verification required?', a: 'No, the process is entirely online.' },
-    { q: 'What documents are required?', a: 'Aadhaar, PAN, photograph, and address proof.' }
-  ];
 
   const toggleFaq = (index) => {
     setExpandedFaq(expandedFaq === index ? null : index);
@@ -53,9 +56,9 @@ const DSCApplication = () => {
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 text-white pt-20">
         <div className="max-w-full mx-auto px-6 sm:px-8 lg:px-12 py-12 text-center">
-          <h2 className="text-3xl font-bold mb-4">Apply for Digital Signature Certificate</h2>
+          <h2 className="text-3xl font-bold mb-4">GST Return Filing – Simplified & Hassle-Free</h2>
           <p className="text-blue-100 mb-6 max-w-3xl mx-auto">
-            Secure your Digital Signature Certificate (DSC) quickly and easily. Get started in minutes with our streamlined process.
+            File your GST returns quickly and accurately with our expert team. Stay compliant and avoid penalties.
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <div className="flex items-center">
@@ -64,11 +67,11 @@ const DSCApplication = () => {
             </div>
             <div className="flex items-center">
               <CheckCircle className="w-4 h-4 mr-2" />
-              <span>Ready in 30 Minutes</span>
+              <span>Expert Assistance</span>
             </div>
             <div className="flex items-center">
               <CheckCircle className="w-4 h-4 mr-2" />
-              <span>Government Approved</span>
+              <span>Govt. Authorized ERI</span>
             </div>
           </div>
         </div>
@@ -78,48 +81,45 @@ const DSCApplication = () => {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           {/* Application Form - Takes up more space */}
           <div className="xl:col-span-2">
-           
-            <ServiceForm serviceType="DSC Application" />
+            <ServiceForm serviceType="GST Return Filing" />
 
-            {/* DSC Information - Enhanced with better layout */}
+            {/* Overview */}
             <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-              <h3 className="text-xl font-bold text-gray-800 mb-4">What is a Digital Signature Certificate?</h3>
-              <p className="text-gray-600 mb-6">
-                A Digital Signature Certificate (DSC) is a secure digital key issued by a certifying authority to verify identity and digitally sign documents, ensuring authentication, data integrity, and legal validity.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="flex items-center text-blue-700 font-bold text-lg mb-2">
+                <CheckCircle className="w-6 h-6 mr-2" /> GST Return Filing – Simplified & Hassle-Free
+              </div>
+              <ul className="list-disc pl-8 text-gray-700 space-y-1 mb-4">
+                <li>Authorized e-Return Intermediary (ERI) – Licensed by the Income Tax Department to e-file returns on your behalf.</li>
+                <li>Registered with Startup India – Certified under the Government of India’s Startup India scheme.</li>
+                <li>Supported by iStart Rajasthan – An official Government initiative supporting startups.</li>
+                <li>Aligned with Digital India – Committed to supporting India’s transition to a digitally empowered economy.</li>
+              </ul>
+            </div>
+
+            {/* GST Return Filing Process */}
+            <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+              <h3 className="text-xl font-bold text-gray-800 mb-2">GST Return Filing Process</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div className="text-center p-4 bg-blue-50 rounded-lg">
                   <FileText className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                  <h4 className="font-semibold text-gray-800">Sign Certificate</h4>
-                  <p className="text-sm text-gray-600">For ITR, GST, MCA filing</p>
+                  <h4 className="font-semibold text-gray-800">1. Fill Online Form</h4>
+                  <p className="text-sm text-gray-600">Start by filling the GST return form and making payment to initiate the process.</p>
                 </div>
                 <div className="text-center p-4 bg-blue-50 rounded-lg">
-                  <Lock className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                  <h4 className="font-semibold text-gray-800">Encrypt Certificate</h4>
-                  <p className="text-sm text-gray-600">For data encryption</p>
+                  <Mail className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                  <h4 className="font-semibold text-gray-800">2. Submit Invoice Data</h4>
+                  <p className="text-sm text-gray-600">Send your invoice data via Email or WhatsApp – quick and simple!</p>
                 </div>
                 <div className="text-center p-4 bg-blue-50 rounded-lg">
-                  <Shield className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                  <h4 className="font-semibold text-gray-800">Sign & Encrypt</h4>
-                  <p className="text-sm text-gray-600">Complete security solution</p>
-                </div>
-              </div>
-
-              <div className="bg-gray-50 rounded-lg p-4">
-                <h4 className="font-semibold text-gray-800 mb-3">Common Uses:</h4>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
-                  {['MCA e-filing', 'ITR filing', 'e-Tendering', 'GST Registration', 'Patent Filing', 'e-Bidding', 'Custom filings', 'Contract signing'].map((use, index) => (
-                    <div key={index} className="flex items-center">
-                      <CheckCircle className="w-3 h-3 text-green-500 mr-2 flex-shrink-0" />
-                      <span className="text-gray-600">{use}</span>
-                    </div>
-                  ))}
+                  <Clock className="w-8 h-8 text-blue-600 mx-auto mb-2" />
+                  <h4 className="font-semibold text-gray-800">3. Confirmation in 24 Hours</h4>
+                  <p className="text-sm text-gray-600">Your return is filed within 24 hours once we receive your data. You’ll receive an instant confirmation.</p>
                 </div>
               </div>
             </div>
 
-            {/* FAQ Section - Moved to main content area */}
+
+            {/* FAQ Section */}
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h3 className="text-xl font-bold text-gray-800 mb-6">Frequently Asked Questions</h3>
               <div className="space-y-4">
@@ -130,8 +130,8 @@ const DSCApplication = () => {
                       className="w-full px-4 py-3 text-left bg-gray-50 hover:bg-gray-100 transition-colors flex justify-between items-center"
                     >
                       <span className="font-medium text-gray-800">{faq.q}</span>
-                      {expandedFaq === index ? 
-                        <ChevronUp className="w-5 h-5 text-gray-600 flex-shrink-0 ml-2" /> : 
+                      {expandedFaq === index ?
+                        <ChevronUp className="w-5 h-5 text-gray-600 flex-shrink-0 ml-2" /> :
                         <ChevronDown className="w-5 h-5 text-gray-600 flex-shrink-0 ml-2" />
                       }
                     </button>
@@ -155,48 +155,33 @@ const DSCApplication = () => {
                 <div className="flex items-start">
                   <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Complete Purchase</h4>
-                    <p className="text-sm text-gray-600">Fill the online form</p>
+                    <h4 className="font-semibold text-gray-800">Fill Online Form</h4>
+                    <p className="text-sm text-gray-600">Start the process online</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Verify Identity</h4>
-                    <p className="text-sm text-gray-600">Online verification in 5 minutes</p>
+                    <h4 className="font-semibold text-gray-800">Submit Invoice Data</h4>
+                    <p className="text-sm text-gray-600">Email or WhatsApp your invoices</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Download Certificate</h4>
-                    <p className="text-sm text-gray-600">Ready within 30 minutes</p>
+                    <h4 className="font-semibold text-gray-800">Get Confirmation</h4>
+                    <p className="text-sm text-gray-600">Return filed within 24 hours</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Benefits */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-lg font-bold text-gray-800 mb-4">Key Benefits</h3>
-              <div className="space-y-3">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start">
-                    <benefit.icon className="w-5 h-5 text-blue-600 mr-3 mt-1 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-semibold text-gray-800">{benefit.title}</h4>
-                      <p className="text-sm text-gray-600">{benefit.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
 
             {/* Required Documents */}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <h3 className="text-lg font-bold text-gray-800 mb-4">Required Documents</h3>
               <div className="space-y-2 text-sm">
-                {['Aadhaar Card', 'PAN Card', 'Passport', 'Electricity Bill', 'Passport-size Photo', 'Filled Application Form'].map((doc, index) => (
+                {requiredDocs.map((doc, index) => (
                   <div key={index} className="flex items-center">
                     <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
                     <span className="text-gray-700">{doc}</span>
@@ -210,10 +195,10 @@ const DSCApplication = () => {
               <h3 className="text-lg font-bold text-gray-800 mb-4">Industries We Serve</h3>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { icon: Globe, title: 'Government' },
-                  { icon: Users, title: 'Healthcare' },
+                  { icon: Globe, title: 'E-Commerce' },
+                  { icon: Users, title: 'Retail' },
                   { icon: Zap, title: 'Manufacturing' },
-                  { icon: FileText, title: 'Legal & Finance' }
+                  { icon: FileText, title: 'Professional Services' }
                 ].map((industry, index) => (
                   <div key={index} className="text-center p-3 bg-gray-50 rounded-lg">
                     <industry.icon className="w-6 h-6 text-blue-600 mx-auto mb-2" />
@@ -231,4 +216,4 @@ const DSCApplication = () => {
   );
 };
 
-export default DSCApplication;
+export default GSTReturnPage;

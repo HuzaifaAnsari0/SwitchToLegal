@@ -4,11 +4,12 @@ import {
 } from 'lucide-react';
 import Footer from '../components/footer';
 import Navbar from '../components/navbar';
+import ServiceForm from '../components/ServiceForm';
 
 const faqs = [
   {
     q: 'What is Online ITR Filing?',
-    a: 'It’s a legal obligation for individuals with income exceeding the exempt limit, allowing you to file your tax return online.'
+    a: `It's a legal obligation for individuals with income exceeding the exempt limit, allowing you to file your tax return online.`
   },
   {
     q: 'How is e-filing tax different from regular filing?',
@@ -19,7 +20,7 @@ const faqs = [
     a: 'Yes, but late filing may attract penalties.'
   },
   {
-    q: 'When do I get a refund if I’ve paid too much tax?',
+    q: `When do I get a refund if I've paid too much tax?`,
     a: 'You will receive your refund after the tax department processes your ITR.'
   },
   {
@@ -29,32 +30,7 @@ const faqs = [
 ];
 
 const ITRPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    mobile: '',
-    email: '',
-    address: '',
-    referralCode: ''
-  });
   const [expandedFaq, setExpandedFaq] = useState(null);
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = () => {
-    alert('Application submitted successfully!');
-    setFormData({
-      name: '',
-      mobile: '',
-      email: '',
-      address: '',
-      referralCode: ''
-    });
-  };
 
   const toggleFaq = (index) => {
     setExpandedFaq(expandedFaq === index ? null : index);
@@ -92,96 +68,7 @@ const ITRPage = () => {
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           {/* Application Form */}
           <div className="xl:col-span-2">
-            <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                <FileText className="w-6 h-6 text-blue-600 mr-3" />
-                Fill Your Details for Income Tax Return Filing
-              </h3>
-              <div className="text-gray-500 mb-6">(Fields marked with <span className="text-red-500">*</span> are mandatory)</div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-gray-700 font-medium mb-2">
-                    <User className="w-4 h-4 inline mr-2" />
-                    Your Name / (नाम) <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter your full name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium mb-2">
-                    <Phone className="w-4 h-4 inline mr-2" />
-                    Mobile Number / (मोबाइल नंबर) <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    name="mobile"
-                    value={formData.mobile}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter mobile number"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium mb-2">
-                    <Mail className="w-4 h-4 inline mr-2" />
-                    Email ID / (ईमेल) <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter email address"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium mb-2">
-                    Referral Code (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    name="referralCode"
-                    value={formData.referralCode}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter referral code"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-gray-700 font-medium mb-2">
-                    <MapPin className="w-4 h-4 inline mr-2" />
-                    Address / (पता) <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter your complete address"
-                  />
-                </div>
-              </div>
-              <button
-                onClick={handleSubmit}
-                className="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center"
-              >
-                Submit ITR Application
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
-            </div>
-
+            <ServiceForm serviceType="ITR Filing" />
 
             {/* KYC & ITR Filing */}
             <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
