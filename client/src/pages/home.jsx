@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
     FileText,
     Phone,
@@ -32,7 +32,8 @@ import {
     Truck,
     HeartPulse,
     Home,
-    Banknote
+    Banknote,
+    FileSignature
 } from 'lucide-react';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
@@ -49,6 +50,7 @@ export default function CorporateLegalUI() {
         subject: '',
         message: ''
     });
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -59,38 +61,197 @@ export default function CorporateLegalUI() {
     }, []);
 
     const services = [
-        { id: 'itr', title: 'File Your ITR Now', desc: 'Professional ITR filing services', icon: <Calculator className="w-6 h-6" /> },
-        { id: 'gst-registration', title: 'GST Registration', desc: 'New GST Registration Services', icon: <ClipboardList className="w-6 h-6" /> },
-        { id: 'gst-return', title: 'GST Return', desc: 'Monthly/Quarterly GST return filing', icon: <FileCheck className="w-6 h-6" /> },
-        { id: 'dsc', title: 'Apply for DSC', desc: 'Digital Signature Certificate Services', icon: <PenLine className="w-6 h-6" /> },
-        { id: 'udyam', title: 'Udyam Registration - MSME', desc: 'Micro, Small & Medium Enterprise Registration', icon: <Award className="w-6 h-6" /> },
-        { id: 'fssai', title: 'FSSAI Food License', desc: 'Food safety compliance license', icon: <Shield className="w-6 h-6" /> },
-        { id: 'shop-act', title: 'Shop and Establishment Act', desc: 'Registration under shop & establishment laws', icon: <Store className="w-6 h-6" /> },
-        { id: 'trademark', title: 'TradeMark Registration', desc: 'Intellectual Property registration', icon: <FileEdit className="w-6 h-6" /> },
-        { id: 'company', title: 'Company Registration', desc: 'Incorporation of companies', icon: <Building className="w-6 h-6" /> },
-        { id: 'accounting', title: 'Accounting Services', desc: 'Professional accounting support', icon: <BarChart3 className="w-6 h-6" /> },
-        { id: 'loan', title: 'Apply For Loan', desc: 'Business, Personal, Home loans', icon: <Banknote className="w-6 h-6" /> },
-        { id: 'insurance-agent', title: 'Insurance Agent POS Registration', desc: 'Become a certified insurance agent', icon: <UserPlus className="w-6 h-6" /> },
-        { id: 'brn', title: 'Apply For BRN No / Sanstha Aadhaar', desc: 'Business Registration Number services', icon: <FileText className="w-6 h-6" /> },
-        { id: 'bike-insurance', title: 'Bike Insurance', desc: 'Two-wheeler vehicle insurance', icon: <Bike className="w-6 h-6" /> },
-        { id: 'car-insurance', title: 'Car Insurance', desc: 'Four-wheeler insurance plans', icon: <CarFront className="w-6 h-6" /> },
-        { id: 'rickshaw-insurance', title: 'Rickshaw Insurance', desc: 'Auto-rickshaw insurance', icon: <Truck className="w-6 h-6" /> },
-        { id: 'taxi-insurance', title: 'Taxi Insurance', desc: 'Cab insurance plans', icon: <CarFront className="w-6 h-6" /> },
-        { id: 'tractor-insurance', title: 'Tractor Insurance', desc: 'Agricultural vehicle insurance', icon: <Truck className="w-6 h-6" /> },
-        { id: 'truck-bus-insurance', title: 'Truck/Bus Insurance', desc: 'Heavy commercial vehicle insurance', icon: <Truck className="w-6 h-6" /> },
-        { id: 'pickup-insurance', title: 'Pickup Truck Insurance', desc: 'Light commercial vehicle coverage', icon: <Truck className="w-6 h-6" /> },
-        { id: 'accident-insurance', title: 'Personal Accident Insurance', desc: 'Coverage against personal accidents', icon: <HeartPulse className="w-6 h-6" /> },
-        { id: 'health-insurance', title: 'Health Insurance', desc: 'Medical insurance coverage', icon: <HeartPulse className="w-6 h-6" /> },
-        { id: 'term-life', title: 'Term Life Insurance', desc: 'Life protection plans', icon: <UserCheck className="w-6 h-6" /> },
-        { id: 'shop-insurance', title: 'Shop Insurance', desc: 'Insurance for shops and stores', icon: <Store className="w-6 h-6" /> },
-        { id: 'home-insurance', title: 'Home Insurance', desc: 'Coverage for home/property', icon: <Home className="w-6 h-6" /> },
-        { id: 'lap', title: 'Loan Against Property', desc: 'Mortgage-based loan services', icon: <Banknote className="w-6 h-6" /> },
-        { id: 'personal-loan', title: 'Personal Loan', desc: 'Short-term loans for personal use', icon: <Banknote className="w-6 h-6" /> },
-        { id: 'home-loan', title: 'Home Loan', desc: 'Affordable housing loan plans', icon: <Home className="w-6 h-6" /> },
-        { id: 'vehicle-loan', title: 'Commercial Vehicle Loan', desc: 'Loans for business vehicles', icon: <Truck className="w-6 h-6" /> },
-        { id: 'old-car-loan', title: 'Old Car Loan', desc: 'Finance for used cars', icon: <CarFront className="w-6 h-6" /> },
-        { id: 'business-loan', title: 'Business Loan', desc: 'Financial assistance for businesses', icon: <Briefcase className="w-6 h-6" /> },
-        { id: 'gold-loan', title: 'Gold Loan', desc: 'Loan against gold assets', icon: <Award className="w-6 h-6" /> }
+        { 
+            id: 'citizen-documents',
+            category: 'Citizen Documents',
+            items: [
+                { id: 'birth-certificate', title: 'Birth Certificate', desc: 'Official birth documentation', icon: <FileText className="w-6 h-6" /> },
+                { id: 'aadhar-card', title: 'Aadhaar Card', desc: 'Unique identification document', icon: <UserCheck className="w-6 h-6" /> },
+                { id: 'pan-tan', title: 'PAN TAN / TDS / TCS / DSC', desc: 'Tax and digital signature services', icon: <FileSignature className="w-6 h-6" /> },
+                { id: 'passport', title: 'Passport Services', desc: 'Fresh/Reissue/Tatkaal passport', icon: <Globe className="w-6 h-6" /> },
+                { id: 'gazette', title: 'Gazette Services', desc: 'Name/DOB/Religion changes', icon: <FileText className="w-6 h-6" /> },
+                { id: 'marriage-certificate', title: 'Marriage Certificate', desc: 'Official marriage documentation', icon: <FileText className="w-6 h-6" /> },
+                { id: 'voter-id', title: 'Voter ID', desc: 'Electoral identification', icon: <UserCheck className="w-6 h-6" /> },
+                { id: 'driving-license', title: 'Driving License', desc: '2/4/3 Wheeler + TR/LMV', icon: <CarFront className="w-6 h-6" /> },
+                { id: 'newspaper-notice', title: 'News Paper Published', desc: 'Public notice publication', icon: <FileText className="w-6 h-6" /> },
+                { id: 'senior-citizen', title: 'Senior Citizen Card', desc: 'E-Shram Card services', icon: <UserCheck className="w-6 h-6" /> },
+                { id: 'cast-certificate', title: 'Cast Certificate', desc: 'NC/EWS/IC/DC/PCC', icon: <FileText className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'education-&-scholarship',
+            category: 'Education & Scholarship',
+            items: [
+                { id: 'domicile', title: 'Domicile Certificate', desc: 'Residence proof documentation', icon: <FileText className="w-6 h-6" /> },
+                { id: 'income-certificate', title: 'Income Certificate', desc: 'Medical/Education/Property', icon: <FileText className="w-6 h-6" /> },
+                { id: 'cast-certificate-tehsil', title: 'Cast Certificate by Tehsil', desc: 'ST/SC/OBC documentation', icon: <FileText className="w-6 h-6" /> },
+                { id: 'non-creamy-layer', title: 'Non-Creamy Layer Certificate', desc: '3yrs IC/DC/Cast Cert merger', icon: <FileText className="w-6 h-6" /> },
+                { id: 'ews', title: 'EWS Certificate', desc: 'Economically Weaker Section', icon: <FileText className="w-6 h-6" /> },
+                { id: 'education-scholarship', title: 'Education Scholarship', desc: 'CSC e-Governance & NGO support', icon: <Award className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'legal-documents',
+            category: 'Legal Documents',
+            items: [
+                { id: 'will-registration', title: 'Will Registration', desc: 'Legal will documentation', icon: <FileText className="w-6 h-6" /> },
+                { id: 'sales-deed', title: 'Sales Deed', desc: 'Room Set Agreement', icon: <FileText className="w-6 h-6" /> },
+                { id: 'renouncing-affidavit', title: 'Renouncing Affidavit', desc: 'Legal bonds and affidavits', icon: <FileText className="w-6 h-6" /> },
+                { id: 'friendly-loan', title: 'Friendly Loan Affidavit', desc: 'Loan documentation', icon: <FileText className="w-6 h-6" /> },
+                { id: 'marriage-declaration', title: 'Marriage Declaration', desc: 'Legal marriage documentation', icon: <FileText className="w-6 h-6" /> },
+                { id: 'gap-certificate', title: 'Gap Certificate', desc: 'Educational gap documentation', icon: <FileText className="w-6 h-6" /> },
+                { id: 'lost-certificate', title: 'Lost Certificate Affidavit', desc: 'Certificate replacement', icon: <FileText className="w-6 h-6" /> },
+                { id: 'leave-licence', title: 'Leave & Licence', desc: 'Property licensing', icon: <FileText className="w-6 h-6" /> },
+                { id: 'partnership-deed', title: 'Partnership Deed', desc: 'Framing & Registration', icon: <FileText className="w-6 h-6" /> },
+                { id: 'gift-deed', title: 'Gift Deed', desc: 'Property gifting documentation', icon: <FileText className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'property-registration',
+            category: 'Property Registration',
+            items: [
+                { id: 'registered-property', title: 'Registered Property', desc: 'MHADA/SRA/CIDCO/MMRDA', icon: <Home className="w-6 h-6" /> },
+                { id: 'sale-deed', title: 'Sale Deed', desc: 'Non-Registered/SLUM Property', icon: <FileText className="w-6 h-6" /> },
+                { id: 'will-probation', title: 'Will Registration', desc: 'Probation requirements', icon: <FileText className="w-6 h-6" /> },
+                { id: 'legal-heirs', title: 'Legal Heirs Certificate', desc: 'Tehsil documentation', icon: <FileText className="w-6 h-6" /> },
+                { id: 'electricity-transfer', title: 'Electricity Bill Transfer', desc: 'Name/Ownership transfer', icon: <FileText className="w-6 h-6" /> },
+                { id: 'title-search', title: 'Title Search', desc: 'Bank loan verification', icon: <Search className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'trade-mark-&-ipr-registration',
+            category: 'Trade Mark & IPR Registration',
+            items: [
+                { id: 'trademark', title: 'Trademark Registration', desc: 'Brand protection services', icon: <FileText className="w-6 h-6" /> },
+                { id: 'copyright', title: 'Copyright Registration', desc: 'Intellectual property protection', icon: <FileText className="w-6 h-6" /> },
+                { id: 'design', title: 'Design Registration', desc: 'Industrial design protection', icon: <FileText className="w-6 h-6" /> },
+                { id: 'patent', title: 'Patent Registration', desc: 'Innovation protection', icon: <FileText className="w-6 h-6" /> },
+                { id: 'iso', title: 'ISO Certification', desc: 'Quality standards certification', icon: <Award className="w-6 h-6" /> },
+                { id: 'shop-act', title: 'Shop Act License', desc: 'Business licensing', icon: <Store className="w-6 h-6" /> },
+                { id: 'company-incorporation', title: 'Company Incorporation', desc: 'Business registration', icon: <Building className="w-6 h-6" /> },
+                { id: 'partnership-firm', title: 'Partnership Firm', desc: 'Business partnership setup', icon: <Users className="w-6 h-6" /> },
+                { id: 'proprietorship', title: 'Proprietorship Firm', desc: 'Sole proprietorship setup', icon: <Users className="w-6 h-6" /> },
+                { id: 'import-export', title: 'Import Export Code', desc: 'International trade code', icon: <Globe className="w-6 h-6" /> },
+                { id: 'barcode', title: 'Bar Code Registration', desc: 'Product identification code', icon: <FileText className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'gst-&-itr-registration',
+            category: 'GST & ITR Registration',
+            items: [
+                { id: 'pan-application', title: 'PAN Application', desc: 'Tax identification number', icon: <FileText className="w-6 h-6" /> },
+                { id: 'tan-tds', title: 'TAN / TDS / TCS', desc: 'Tax deduction services', icon: <FileText className="w-6 h-6" /> },
+                { id: 'gst-registration', title: 'GST Registration', desc: 'Goods and services tax', icon: <FileText className="w-6 h-6" /> },
+                { id: 'business-tax', title: 'Business Tax Return', desc: 'Business tax filing', icon: <Calculator className="w-6 h-6" /> },
+                { id: 'company-tax', title: 'Company Tax Return', desc: 'Corporate tax filing', icon: <Calculator className="w-6 h-6" /> },
+                { id: 'trust-accounting', title: 'Trust / NGO Accounting', desc: 'Non-profit organization tax', icon: <Calculator className="w-6 h-6" /> },
+                { id: 'llp-tax', title: 'LLP Tax Filing', desc: 'Limited liability partnership tax', icon: <Calculator className="w-6 h-6" /> },
+                { id: 'itr-filing', title: 'ITR Filing', desc: 'Single year or Two-year tax filing', icon: <Calculator className="w-6 h-6" /> },
+                { id: 'pan-surrender', title: 'PAN Surrender', desc: 'Tax number surrender process', icon: <FileText className="w-6 h-6" /> },
+                { id: 'current-account', title: 'Current Account', desc: 'Business account opening', icon: <Banknote className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'insurance',
+            category: 'Insurance',
+            items: [
+                { id: 'general-insurance', title: 'General Insurance', desc: 'Comprehensive coverage', icon: <Shield className="w-6 h-6" /> },
+                { id: 'life-insurance', title: 'Life Insurance', desc: 'Life protection plans', icon: <HeartPulse className="w-6 h-6" /> },
+                { id: 'health-insurance', title: 'Health Insurance', desc: 'Medical coverage', icon: <HeartPulse className="w-6 h-6" /> },
+                { id: 'motor-insurance', title: 'Motor Insurance', desc: 'Vehicle coverage', icon: <CarFront className="w-6 h-6" /> },
+                { id: 'property-insurance', title: 'Property Insurance', desc: 'Property protection', icon: <Home className="w-6 h-6" /> },
+                { id: 'mobile-insurance', title: 'Mobile Insurance', desc: 'Device protection', icon: <Phone className="w-6 h-6" /> },
+                { id: 'travel-insurance', title: 'Travel Insurance', desc: 'Travel protection', icon: <Globe className="w-6 h-6" /> },
+                { id: 'shop-insurance', title: 'Shop Insurance', desc: 'Business protection', icon: <Store className="w-6 h-6" /> },
+                { id: 'crop-insurance', title: 'Crop Insurance', desc: 'Agricultural protection', icon: <Award className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'csc-kyc-&-others-id-proof',
+            category: 'CSC KYC & Others ID Proof',
+            items: [
+                { id: 'ayushman-bharat', title: 'Ayushman Bharat KYC', desc: 'Medical support coverage', icon: <HeartPulse className="w-6 h-6" /> },
+                { id: 'pan-tan-kyc', title: 'PAN / TAN / TDS', desc: 'Tax identification', icon: <FileText className="w-6 h-6" /> },
+                { id: 'driving-license-kyc', title: 'Driving License', desc: 'Vehicle license', icon: <CarFront className="w-6 h-6" /> },
+                { id: 'voter-id-kyc', title: 'Voter ID', desc: 'Electoral identification', icon: <UserCheck className="w-6 h-6" /> },
+                { id: 'ayushman-medical', title: 'Ayushman Medical', desc: '5 Lakhs coverage', icon: <HeartPulse className="w-6 h-6" /> },
+                { id: 'e-shram', title: 'E Shram', desc: 'Labor KYC services', icon: <UserCheck className="w-6 h-6" /> },
+                { id: 'nps', title: 'NPS', desc: 'National Pension Scheme', icon: <Banknote className="w-6 h-6" /> },
+                { id: 'atal-pension', title: 'Atal Pension', desc: 'Pension scheme', icon: <Banknote className="w-6 h-6" /> },
+                { id: 'jeevan-pramaan', title: 'Jeevan Pramaan', desc: 'Life certificate', icon: <FileText className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'business-startup',
+            category: 'Business Startup',
+            items: [
+                { id: 'udyam', title: 'UDHYAM', desc: 'Center Government registration', icon: <Award className="w-6 h-6" /> },
+                { id: 'gumasta', title: 'Gumasta', desc: 'State Government license', icon: <FileText className="w-6 h-6" /> },
+                { id: 'fssai', title: 'FSSAI License', desc: 'Food & Drugs license', icon: <Shield className="w-6 h-6" /> },
+                { id: 'dsc', title: 'DSC Class III', desc: 'Digital signature certificate', icon: <FileSignature className="w-6 h-6" /> },
+                { id: 'gst-startup', title: 'GST Registration', desc: 'Goods & Service Tax', icon: <FileText className="w-6 h-6" /> },
+                { id: 'trademark-startup', title: 'Trade Mark Registration', desc: 'Brand protection', icon: <FileText className="w-6 h-6" /> },
+                { id: 'llp-startup', title: 'LLP Registration', desc: 'Limited liability partnership', icon: <Building className="w-6 h-6" /> },
+                { id: 'partnership-startup', title: 'Partnership Registration', desc: 'Business partnership', icon: <Users className="w-6 h-6" /> },
+                { id: 'psara', title: 'PSARA License', desc: 'Security license', icon: <Shield className="w-6 h-6" /> },
+                { id: 'pan-center', title: 'PAN Centre Agency', desc: 'Tax service provider', icon: <FileText className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'e-banking',
+            category: 'E-Banking',
+            items: [
+                { id: 'internet-banking', title: 'Internet Banking', desc: 'Online banking services', icon: <Globe className="w-6 h-6" /> },
+                { id: 'mobile-banking', title: 'Mobile Banking', desc: 'Smartphone banking', icon: <Phone className="w-6 h-6" /> },
+                { id: 'phone-banking', title: 'Phone Banking', desc: 'Telephone banking', icon: <Phone className="w-6 h-6" /> },
+                { id: 'eft', title: 'Electronic Fund Transfer', desc: 'Digital money transfer', icon: <Banknote className="w-6 h-6" /> },
+                { id: 'upi', title: 'UPI Services', desc: 'Unified payment interface', icon: <Banknote className="w-6 h-6" /> },
+                { id: 'e-wallet', title: 'E-Wallets', desc: 'Digital wallet services', icon: <Banknote className="w-6 h-6" /> },
+                { id: 'bill-payment', title: 'Bill Payment', desc: 'Online bill payments', icon: <FileText className="w-6 h-6" /> },
+                { id: 'cheque-book', title: 'Cheque Book', desc: 'Online banking requests', icon: <FileText className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'tours-travel-&-visa',
+            category: 'Tours, Travel & Visa',
+            items: [
+                { id: 'tours', title: 'Tour Services', desc: 'Domestic & International tours', icon: <Globe className="w-6 h-6" /> },
+                { id: 'travel', title: 'Travel Services', desc: 'Flight & hotel booking', icon: <Globe className="w-6 h-6" /> },
+                { id: 'visa', title: 'Visa Services', desc: 'Visa application support', icon: <FileText className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'e-loan',
+            category: 'E-Loan',
+            items: [
+                { id: 'digital-kyc', title: 'Digital KYC', desc: 'Online verification', icon: <UserCheck className="w-6 h-6" /> },
+                { id: 'personal-loan', title: 'Personal Loan', desc: 'Individual financing', icon: <Banknote className="w-6 h-6" /> },
+                { id: 'home-loan', title: 'Home Loan', desc: 'Property financing', icon: <Home className="w-6 h-6" /> },
+                { id: 'vehicle-loan', title: 'Vehicle Loan', desc: 'Auto financing', icon: <CarFront className="w-6 h-6" /> },
+                { id: 'education-loan', title: 'Education Loan', desc: 'Study financing', icon: <Award className="w-6 h-6" /> },
+                { id: 'business-loan', title: 'Business Loan', desc: 'Enterprise financing', icon: <Briefcase className="w-6 h-6" /> },
+                { id: 'gold-loan', title: 'Gold Loan', desc: 'Asset-based financing', icon: <Award className="w-6 h-6" /> },
+                { id: 'property-loan', title: 'Loan Against Property', desc: 'Property-based financing', icon: <Home className="w-6 h-6" /> }
+            ]
+        },
+        {   
+            id: 'tele-law-&-e-court-support',
+            category: 'Free Tele Law & e-Court Support',
+            items: [
+                { id: 'tele-law', title: 'Free Legal Advice', desc: 'Legal consultation services', icon: <Scale className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'e-commerce-&-digital-platform',
+            category: 'E-Commerce & Digital Platform',
+            items: [
+                { id: 'ecommerce-website', title: 'E-Commerce Website', desc: 'Online store development', icon: <Globe className="w-6 h-6" /> },
+                { id: 'mobile-app', title: 'Mobile App', desc: 'E-commerce app development', icon: <Phone className="w-6 h-6" /> },
+                { id: 'marketplace', title: 'Marketplace Integration', desc: 'Platform integration', icon: <Store className="w-6 h-6" /> },
+                { id: 'payment-gateway', title: 'Payment Gateway', desc: 'Secure payment integration', icon: <Banknote className="w-6 h-6" /> },
+                { id: 'digital-marketing', title: 'Digital Marketing', desc: 'Online promotion', icon: <Globe className="w-6 h-6" /> }
+            ]
+        }
     ];
 
     const stats = [
@@ -102,6 +263,12 @@ export default function CorporateLegalUI() {
 
     const handleTabChange = (tabId) => {
         setActiveTab(tabId);
+        // Convert service name to URL slug
+        const serviceName = services.flatMap(cat => cat.items).find(item => item.id === tabId)?.title;
+        if (serviceName) {
+            const urlSlug = serviceName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            navigate(`/service/${urlSlug}`);
+        }
     };
 
     const handleInputChange = (e) => {
@@ -116,11 +283,14 @@ export default function CorporateLegalUI() {
         console.log('Form submitted:', formData);
     };
 
-    // Filter services based on search query
-    const filteredServices = services.filter(service => 
-        service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        service.desc.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    // Update the filteredServices logic
+    const filteredServices = services.map(category => ({
+        ...category,
+        items: category.items.filter(service => 
+            service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            service.desc.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+    })).filter(category => category.items.length > 0);
 
     return (
         <div className="font-sans antialiased text-gray-900 overflow-x-hidden bg-white">
@@ -203,66 +373,75 @@ export default function CorporateLegalUI() {
             </div>
             
             {/* Corporate Services Grid */}
-            <div className="py-20 bg-slate-50">
-                <div className="container mx-auto px-4">
-                    
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {filteredServices.map(service => (
-                            <button 
-                                key={service.id}
-                                onClick={() => handleTabChange(service.id)}
-                                className={`group p-6 rounded-xl transition-all duration-300 border-2 ${
-                                    activeTab === service.id 
-                                    ? 'bg-blue-600 text-white border-blue-600 shadow-lg' 
-                                    : 'bg-white hover:bg-slate-50 border-slate-200 hover:border-blue-300 shadow-sm hover:shadow-md'
-                                }`}
-                            >
-                                <div className="flex flex-col items-center text-center">
-                                    <div className={`p-3 rounded-lg mb-4 transition-colors ${
-                                        activeTab === service.id 
-                                        ? 'bg-white/20' 
-                                        : 'bg-slate-100 group-hover:bg-blue-50'
-                                    }`}>
-                                        <div className={`${activeTab === service.id ? 'text-white' : 'text-slate-600 group-hover:text-blue-600'}`}>
-                                            {service.icon}
+                        <div className="py-20 bg-slate-50">
+                            <div className="container mx-auto px-4">
+                                <div className="mb-12">
+                                    <h2 className="text-center text-3xl font-bold text-slate-800 mb-4">Our Services</h2>
+                                    <p className="text-center text-slate-600">Comprehensive range of legal and compliance services</p>
+                                </div>
+                                
+                                {filteredServices.map((category, categoryIndex) => (
+                                    <div key={categoryIndex} id={category.id} className="mb-12">
+                                        <h3 className="text-center text-2xl font-semibold text-slate-800 mb-6">{category.category}</h3>
+                                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                                            {category.items.map(service => (
+                                                <button 
+                                                    key={service.id}
+                                                    onClick={() => handleTabChange(service.id)}
+                                                    className={`group p-6 rounded-xl transition-all duration-300 border-2 ${
+                                                        activeTab === service.id 
+                                                        ? 'bg-blue-600 text-white border-blue-600 shadow-lg' 
+                                                        : 'bg-white hover:bg-slate-50 border-slate-200 hover:border-blue-300 shadow-sm hover:shadow-md'
+                                                    }`}
+                                                >
+                                                    <div className="flex flex-col items-center text-center">
+                                                        <div className={`p-3 rounded-lg mb-4 transition-colors ${
+                                                            activeTab === service.id 
+                                                            ? 'bg-white/20' 
+                                                            : 'bg-slate-100 group-hover:bg-blue-50'
+                                                        }`}>
+                                                            <div className={`${activeTab === service.id ? 'text-white' : 'text-slate-600 group-hover:text-blue-600'}`}>
+                                                                {service.icon}
+                                                            </div>
+                                                        </div>
+                                                        <h3 className={`font-semibold mb-2 text-sm ${activeTab === service.id ? 'text-white' : 'text-slate-800'}`}>
+                                                            {service.title}
+                                                        </h3>
+                                                        <p className={`text-xs ${activeTab === service.id ? 'text-blue-100' : 'text-slate-500'}`}>
+                                                            {service.desc}
+                                                        </p>
+                                                    </div>
+                                                </button>
+                                            ))}
                                         </div>
                                     </div>
-                                    <h3 className={`font-semibold mb-2 text-sm ${activeTab === service.id ? 'text-white' : 'text-slate-800'}`}>
-                                        {service.title}
-                                    </h3>
-                                    <p className={`text-xs ${activeTab === service.id ? 'text-blue-100' : 'text-slate-500'}`}>
-                                        {service.desc}
-                                    </p>
-                                </div>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </div>
-            
-            
-                        <div className="py-20 bg-white">
-                            <div className="container mx-auto px-4">
-                                <div className="text-center mb-16">
-                                    <h2 className="text-3xl font-bold text-slate-800 mb-4">Proven Excellence</h2>
-                                    <p className="text-slate-600 max-w-2xl mx-auto">Our commitment to quality and client satisfaction is reflected in our track record of successful engagements and long-term partnerships.</p>
-                                </div>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                                    {stats.map((stat, index) => (
-                                        <div key={index} className="text-center">
-                                            <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center h-full">
-                                                <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-2 break-words overflow-hidden text-ellipsis w-full" style={{wordBreak: 'break-word', maxWidth: '100%'}}>
-                                                    {stat.number}
-                                                </div>
-                                                <div className="text-slate-600 font-medium">{stat.title}</div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
+                                ))}
                             </div>
                         </div>
+                        
+                        
+                                    <div className="py-20 bg-white">
+                                        <div className="container mx-auto px-4">
+                                            <div className="text-center mb-16">
+                                                <h2 className="text-3xl font-bold text-slate-800 mb-4">Proven Excellence</h2>
+                                                <p className="text-slate-600 max-w-2xl mx-auto">Our commitment to quality and client satisfaction is reflected in our track record of successful engagements and long-term partnerships.</p>
+                                            </div>
+                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                                                {stats.map((stat, index) => (
+                                                    <div key={index} className="text-center">
+                                                        <div className="bg-slate-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center h-full">
+                                                            <div className="text-2xl md:text-4xl font-bold text-blue-600 mb-2 break-words overflow-hidden text-ellipsis w-full" style={{wordBreak: 'break-word', maxWidth: '100%'}}>
+                                                                {stat.number}
+                                                            </div>
+                                                            <div className="text-slate-600 font-medium">{stat.title}</div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
 
-                        {/* About Section - Corporate */}
+                                    {/* About Section - Corporate */}
             <div className="py-20 bg-slate-900 text-white">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center mb-16">
@@ -474,7 +653,6 @@ export default function CorporateLegalUI() {
                 </div>
             </div>
             
-            {/* Corporate Footer */}
             <Footer />
         </div>
     );

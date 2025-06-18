@@ -31,7 +31,7 @@ const Footer = () => {
                             <a href="tel:+911234567890" className="hover:text-blue-400 transition-colors">
                                 <Phone className="w-5 h-5" />
                             </a>
-                            <a href="mailto:info@switchtolegal.com" className="hover:text-blue-400 transition-colors">
+                            <a href="mailto:switchtolegal@gmail.com" className="hover:text-blue-400 transition-colors">
                                 <Mail className="w-5 h-5" />
                             </a>
                             <a href="https://wa.me/911234567890" className="hover:text-blue-400 transition-colors">
@@ -99,7 +99,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <span className="flex items-center">
-                                    <Mail className="w-4 h-4 mr-2" /> info@switchtolegal.com
+                                    <Mail className="w-4 h-4 mr-2" /> switchtolegal@gmail.com
                                 </span>
                             </li>
                             <li>
