@@ -3,6 +3,7 @@ import { ChevronDown, Heart, Users, BookOpen, Lightbulb, Globe, Phone, Mail, Map
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import scanner from '../assets/scanner.png';
+import ServiceForm from '../components/ServiceForm';
 
 const HumanityZonePlusWebsite = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -313,7 +314,7 @@ const HumanityZonePlusWebsite = () => {
 
       {/* Donation Section */}
       <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-2 text-center">
           <div className="bg-white rounded-3xl p-8 shadow-2xl">
             <div className="text-4xl mb-6">💖</div>
             <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
@@ -332,8 +333,18 @@ const HumanityZonePlusWebsite = () => {
             </div>
             <p className="text-sm text-gray-500 mt-6">All donations are used transparently. Receipts available upon request.</p>
           </div>
+          <div className="max-w-3xl mx-auto px-4">
+          <ServiceForm serviceType="NGO" />
+        </div>
         </div>
       </section>
+
+      {/* Service Form for NGO
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4">
+          <ServiceForm serviceType="NGO" />
+        </div>
+      </section> */}
 
         <section id="contact" className="py-16 bg-gray-100 text-gray-900">
           <div className="max-w-7xl mx-auto px-4">
