@@ -24,15 +24,13 @@ const serviceSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  message: {
+    type: String,
+  },
   submissionDate: {
     type: Date,
     default: Date.now
   },
-  status: {
-    type: String,
-    enum: ['pending', 'in-progress', 'completed'],
-    default: 'pending'
-  }
 });
 
 module.exports = mongoose.model('Service', serviceSchema); 

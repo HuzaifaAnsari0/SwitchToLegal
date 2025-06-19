@@ -298,82 +298,82 @@ export default function CorporateLegalUI() {
             <Navbar />
 
             {/* Professional Hero Section */}
-            <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white pt-28 pb-20">
-                <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-                <div className="container mx-auto px-4 relative z-10">
-                    <div className="max-w-4xl mx-auto">
-                        <div className="text-center mb-12">
-                            <div className="inline-flex items-center bg-blue-600/20 backdrop-blur-sm px-4 py-2 rounded-full text-blue-300 text-sm font-medium mb-6">
-                                <Shield className="w-4 h-4 mr-2" />
-                                Trusted Legal Partner
-                            </div>
-                            <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                                Find Your <span className="text-blue-400">Legal Service</span>
-                            </h1>
-                            <p className="text-lg mb-8 text-slate-300">
-                                Search from our comprehensive range of legal and compliance services
-                            </p>
-                        </div>
-
-                        {/* Search Section */}
-                        <div className="bg-white rounded-2xl shadow-2xl p-6 mb-8">
-                            <div className="relative">
-                                <div className="flex items-center">
-                                    <div className="flex-1 relative">
-                                        <input
-                                            type="text"
-                                            value={searchQuery}
-                                            onChange={(e) => setSearchQuery(e.target.value)}
-                                            placeholder="Search for services (e.g., ITR Filing, GST Registration, DSC)"
-                                            className="w-full px-6 py-4 pl-12 text-slate-800 bg-slate-50 rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
-                                        />
-                                        <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 transform -translate-y-1/2" />
+                        <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white pt-24 pb-8 md:pt-28 md:pb-10">
+                            <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+                            <div className="container mx-auto px-4 relative z-10">
+                                <div className="max-w-4xl mx-auto">
+                                    <div className="text-center mb-8 md:mb-12">
+                                        <div className="inline-flex items-center bg-blue-600/20 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 rounded-full text-blue-300 text-xs md:text-sm font-medium mb-4 md:mb-6">
+                                            <Shield className="w-4 h-4 mr-2" />
+                                            Trusted Legal Partner
+                                        </div>
+                                        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">
+                                            Find Your <span className="text-blue-400">Legal Service</span>
+                                        </h1>
+                                        <p className="text-base md:text-lg mb-6 md:mb-8 text-slate-300">
+                                            Search from our comprehensive range of legal and compliance services
+                                        </p>
                                     </div>
-                                </div>
-                            </div>
 
-                            {/* Popular Searches */}
-                            <div className="mt-6">
-                                <div className="text-sm text-slate-500 mb-3">Popular Searches:</div>
-                                <div className="flex flex-wrap gap-2">
-                                    {['ITR Filing', 'GST Registration', 'DSC', 'Company Registration', 'Trademark'].map((tag, index) => (
-                                        <button
-                                            key={index}
-                                            onClick={() => setSearchQuery(tag)}
-                                            className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium transition-colors"
-                                        >
-                                            {tag}
-                                        </button>
-                                    ))}
+                                    {/* Search Section */}
+                                    <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-6 mb-6 md:mb-8">
+                                        <div className="relative">
+                                            <div className="flex items-center">
+                                                <div className="flex-1 relative">
+                                                    <input
+                                                        type="text"
+                                                        value={searchQuery}
+                                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                                        placeholder="Search for services (e.g., ITR Filing, GST Registration, DSC)"
+                                                        className="w-full px-4 md:px-6 py-3 md:py-4 pl-10 md:pl-12 text-slate-800 bg-slate-50 rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 text-sm md:text-base"
+                                                    />
+                                                    <Search className="w-5 h-5 text-slate-400 absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Popular Searches */}
+                                        <div className="mt-4 md:mt-6">
+                                            <div className="text-xs md:text-sm text-slate-500 mb-2 md:mb-3">Popular Searches:</div>
+                                            <div className="flex flex-wrap gap-2">
+                                                {['ITR Filing', 'GST Registration', 'DSC', 'Company Registration', 'Trademark'].map((tag, index) => (
+                                                    <button
+                                                        key={index}
+                                                        onClick={() => setSearchQuery(tag)}
+                                                        className="px-3 py-1.5 md:px-4 md:py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs md:text-sm font-medium transition-colors"
+                                                    >
+                                                        {tag}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Quick Stats */}
+                                    {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                                            <div className="text-2xl font-bold text-blue-400 mb-1">₹99</div>
+                                            <div className="text-sm text-slate-300">Starting Price</div>
+                                        </div>
+                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                                            <div className="text-2xl font-bold text-blue-400 mb-1">24/7</div>
+                                            <div className="text-sm text-slate-300">Support</div>
+                                        </div>
+                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                                            <div className="text-2xl font-bold text-blue-400 mb-1">100%</div>
+                                            <div className="text-sm text-slate-300">Success Rate</div>
+                                        </div>
+                                        <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
+                                            <div className="text-2xl font-bold text-blue-400 mb-1">15+</div>
+                                            <div className="text-sm text-slate-300">Years Experience</div>
+                                        </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
-
-                        {/* Quick Stats */}
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                                <div className="text-2xl font-bold text-blue-400 mb-1">₹99</div>
-                                <div className="text-sm text-slate-300">Starting Price</div>
-                            </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                                <div className="text-2xl font-bold text-blue-400 mb-1">24/7</div>
-                                <div className="text-sm text-slate-300">Support</div>
-                            </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                                <div className="text-2xl font-bold text-blue-400 mb-1">100%</div>
-                                <div className="text-sm text-slate-300">Success Rate</div>
-                            </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-                                <div className="text-2xl font-bold text-blue-400 mb-1">15+</div>
-                                <div className="text-sm text-slate-300">Years Experience</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            {/* Corporate Services Grid */}
-                        <div className="py-20 bg-slate-50">
+                        
+                        {/* Corporate Services Grid */}
+                        <div className="py-10 bg-slate-50">
                             <div className="container mx-auto px-4">
                                 <div className="mb-12">
                                     <h2 className="text-center text-3xl font-bold text-slate-800 mb-4">Our Services</h2>

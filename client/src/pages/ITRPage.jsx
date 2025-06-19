@@ -45,7 +45,7 @@ const ITRPage = () => {
         <div className="max-w-full mx-auto px-6 sm:px-8 lg:px-12 py-12 text-center">
           <h2 className="text-3xl font-bold mb-4">Apply for Income Tax Return (ITR) Filing</h2>
           <p className="text-blue-100 mb-6 max-w-3xl mx-auto">
-            File your Income Tax Return (ITR) securely and easily with Web Online CA. Get expert support and maximize your deductions.
+            File your Income Tax Return (ITR) securely and easily with Switch To Legal. Get expert support and maximize your deductions.
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <div className="flex items-center">

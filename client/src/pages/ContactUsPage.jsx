@@ -152,34 +152,34 @@ const ContactUsPage = () => {
       <Navbar />
 
       {/* Rest of the existing content with adjusted top padding */}
-      <div className="pt-24">
+      <div className="pt-20 sm:pt-24">
         {/* Header Section */}
         <div className="bg-white shadow-sm">
-          <div className="container mx-auto px-4 py-12">
+          <div className="container mx-auto px-2 sm:px-4 py-8 sm:py-12">
             <div className="text-center">
-              <div className="flex justify-center mb-6">
-                <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4 rounded-2xl shadow-lg">
-                  <MessageCircle className="w-12 h-12 text-white" />
+              <div className="flex justify-center mb-4 sm:mb-6">
+                <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-3 sm:p-4 rounded-2xl shadow-lg">
+                  <MessageCircle className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
                 </div>
               </div>
-              <h1 className="text-4xl font-bold text-slate-800 mb-4">
+              <h1 className="text-2xl sm:text-4xl font-bold text-slate-800 mb-2 sm:mb-4">
                 Get in Touch with Us
               </h1>
-              <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
+              <p className="text-base sm:text-xl text-slate-600 mb-6 sm:mb-8 max-w-xl sm:max-w-3xl mx-auto">
                 We're here to help you with all your tax, legal, and business needs. 
                 Reach out to our expert team for personalized assistance.
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <div className="flex items-center bg-green-50 text-green-700 px-4 py-2 rounded-full">
-                  <CheckCircle className="w-4 h-4 mr-2" />
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+                <div className="flex items-center bg-green-50 text-green-700 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-base">
+                  <CheckCircle className="w-4 h-4 mr-1 sm:mr-2" />
                   GSP Licensed
                 </div>
-                <div className="flex items-center bg-blue-50 text-blue-700 px-4 py-2 rounded-full">
-                  <Award className="w-4 h-4 mr-2" />
+                <div className="flex items-center bg-blue-50 text-blue-700 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-base">
+                  <Award className="w-4 h-4 mr-1 sm:mr-2" />
                   Government Authorized
                 </div>
-                <div className="flex items-center bg-purple-50 text-purple-700 px-4 py-2 rounded-full">
-                  <Shield className="w-4 h-4 mr-2" />
+                <div className="flex items-center bg-purple-50 text-purple-700 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-base">
+                  <Shield className="w-4 h-4 mr-1 sm:mr-2" />
                   Secure & Trusted
                 </div>
               </div>
@@ -187,35 +187,35 @@ const ContactUsPage = () => {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="container mx-auto px-2 sm:px-4 py-8 sm:py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
             {/* Left Side - Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {/* Contact Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {contactInfo.map((contact, index) => (
-                  <div key={index} className="bg-white rounded-2xl shadow-lg p-6 border border-blue-100 hover:shadow-xl transition-all duration-300">
-                    <div className={`${contact.color} p-3 rounded-xl w-fit mb-4`}>
+                  <div key={index} className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 border border-blue-100 hover:shadow-xl transition-all duration-300">
+                    <div className={`${contact.color} p-2 sm:p-3 rounded-xl w-fit mb-3 sm:mb-4`}>
                       <div className="text-white">{contact.icon}</div>
                     </div>
-                    <h3 className="font-bold text-slate-800 mb-2">{contact.title}</h3>
-                    <p className="text-lg font-semibold text-slate-700 mb-1">{contact.primary}</p>
-                    <p className="text-sm text-blue-600 font-medium mb-2">{contact.secondary}</p>
-                    <p className="text-sm text-slate-600">{contact.description}</p>
+                    <h3 className="font-bold text-slate-800 mb-1 sm:mb-2 text-base sm:text-lg">{contact.title}</h3>
+                    <p className="text-base font-semibold text-slate-700 mb-0.5 sm:mb-1">{contact.primary}</p>
+                    <p className="text-xs sm:text-sm text-blue-600 font-medium mb-1 sm:mb-2">{contact.secondary}</p>
+                    <p className="text-xs sm:text-sm text-slate-600">{contact.description}</p>
                   </div>
                 ))}
               </div>
 
               {/* Services We Offer */}
-              <div className="bg-white rounded-2xl shadow-lg p-8 border border-blue-100">
-                <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center">Our Services</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-8 border border-blue-100">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-4 sm:mb-6 text-center">Our Services</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {services.map((service, index) => (
-                    <div key={index} className="flex items-start p-4 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-100 hover:shadow-md transition-all duration-300">
-                      <div className="text-blue-600 mr-3 mt-1">{service.icon}</div>
+                    <div key={index} className="flex items-start p-3 sm:p-4 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-100 hover:shadow-md transition-all duration-300">
+                      <div className="text-blue-600 mr-2 sm:mr-3 mt-1">{service.icon}</div>
                       <div>
-                        <h4 className="font-semibold text-slate-800 mb-1">{service.title}</h4>
-                        <p className="text-sm text-slate-600">{service.description}</p>
+                        <h4 className="font-semibold text-slate-800 mb-0.5 sm:mb-1 text-base">{service.title}</h4>
+                        <p className="text-xs sm:text-sm text-slate-600">{service.description}</p>
                       </div>
                     </div>
                   ))}
@@ -223,17 +223,17 @@ const ContactUsPage = () => {
               </div>
 
               {/* Why Choose Us */}
-              <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white">
-                <h2 className="text-2xl font-bold mb-6 text-center">Why Choose Web Online CA?</h2>
-                <div className="space-y-6">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-4 sm:p-8 text-white">
+                <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">Why Choose Switch To Legal?</h2>
+                <div className="space-y-4 sm:space-y-6">
                   {features.map((feature, index) => (
                     <div key={index} className="flex items-start">
-                      <div className="bg-white/20 p-3 rounded-xl mr-4">
+                      <div className="bg-white/20 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4">
                         <div className="text-white">{feature.icon}</div>
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-2">{feature.title}</h3>
-                        <p className="text-blue-100">{feature.description}</p>
+                        <h3 className="font-semibold mb-1 sm:mb-2">{feature.title}</h3>
+                        <p className="text-blue-100 text-xs sm:text-base">{feature.description}</p>
                       </div>
                     </div>
                   ))}
@@ -242,25 +242,25 @@ const ContactUsPage = () => {
             </div>
 
             {/* Right Side - Contact Form */}
-            <div className="bg-white rounded-2xl shadow-xl p-8 border border-blue-100 h-fit">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold text-slate-800 mb-2">Request a Free Call Back</h2>
-                <p className="text-slate-600">We'll inspire and assist you with your requirements</p>
+            <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-8 border border-blue-100 h-fit">
+              <div className="text-center mb-6 sm:mb-8">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-1 sm:mb-2">Request a Free Call Back</h2>
+                <p className="text-slate-600 text-sm sm:text-base">We'll inspire and assist you with your requirements</p>
               </div>
 
               {isSubmitted && (
-                <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6 flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-600 mr-3" />
+                <div className="bg-green-50 border border-green-200 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 flex items-center">
+                  <CheckCircle className="w-5 h-5 text-green-600 mr-2 sm:mr-3" />
                   <div>
-                    <p className="text-green-800 font-medium">Message sent successfully!</p>
-                    <p className="text-green-600 text-sm">We'll get back to you within 30 minutes.</p>
+                    <p className="text-green-800 font-medium text-sm sm:text-base">Message sent successfully!</p>
+                    <p className="text-green-600 text-xs sm:text-sm">We'll get back to you within 30 minutes.</p>
                   </div>
                 </div>
               )}
 
-              <div className="space-y-6">
+              <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
                     Enter Your Name
                   </label>
                   <input
@@ -269,13 +269,13 @@ const ContactUsPage = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Your full name"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-sm sm:text-base"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
                     Enter Mobile Number
                   </label>
                   <input
@@ -284,13 +284,13 @@ const ContactUsPage = () => {
                     value={formData.mobile}
                     onChange={handleInputChange}
                     placeholder="Your mobile number"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-sm sm:text-base"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
                     Enter Email ID
                   </label>
                   <input
@@ -299,20 +299,20 @@ const ContactUsPage = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="Your email address"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-sm sm:text-base"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
                     Select Subject
                   </label>
                   <select
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-sm sm:text-base"
                     required
                   >
                     <option value="">--Select Subject--</option>
@@ -328,7 +328,7 @@ const ContactUsPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
                     Enter Your Message
                   </label>
                   <textarea
@@ -336,67 +336,67 @@ const ContactUsPage = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Describe your requirements or ask any questions..."
-                    rows="5"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    rows="4"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-sm sm:text-base"
                   />
                 </div>
 
                 <button
-                  onClick={handleSubmit}
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg flex items-center justify-center"
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg flex items-center justify-center text-base"
                 >
                   <Send className="w-5 h-5 mr-2" />
                   Send Message
                 </button>
 
-                <div className="text-center pt-4">
-                  <p className="text-sm text-slate-600">
+                <div className="text-center pt-2 sm:pt-4">
+                  <p className="text-xs sm:text-sm text-slate-600">
                     Or call us directly at{' '}
                     <a href="tel:+917413826826" className="text-blue-600 font-semibold hover:underline">
                       +91 7413 826826
                     </a>
                   </p>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
 
           {/* Additional Information Section */}
-          <div className="mt-16 bg-white rounded-2xl shadow-lg p-8 border border-blue-100">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-slate-800 mb-4">Get Tax Ready with Web Online CA</h2>
-              <p className="text-slate-600 max-w-3xl mx-auto">
+          <div className="mt-10 sm:mt-16 bg-white rounded-2xl shadow-lg p-4 sm:p-8 border border-blue-100">
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-2 sm:mb-4">Get Tax Ready with Switch To Legal</h2>
+              <p className="text-slate-600 max-w-xl sm:max-w-3xl mx-auto text-sm sm:text-base">
                 We were awarded a GSP license after rigorous security evaluation of our technological 
                 and financial capabilities to serve our clients with excellence.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
               <div className="text-center">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl mb-4">
-                  <Shield className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                  <h3 className="font-bold text-slate-800 mb-2">Ensure Security</h3>
-                  <p className="text-sm text-slate-600">
-                    We keep your personal information safe and secure. Your privacy is protected across Web Online CA.
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 sm:p-6 rounded-2xl mb-3 sm:mb-4">
+                  <Shield className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 mx-auto mb-2 sm:mb-4" />
+                  <h3 className="font-bold text-slate-800 mb-1 sm:mb-2 text-base sm:text-lg">Ensure Security</h3>
+                  <p className="text-xs sm:text-sm text-slate-600">
+                    We keep your personal information safe and secure. Your privacy is protected across Switch To Legal.
                   </p>
                 </div>
               </div>
 
               <div className="text-center">
-                <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-2xl mb-4">
-                  <Users className="w-12 h-12 text-green-600 mx-auto mb-4" />
-                  <h3 className="font-bold text-slate-800 mb-2">Expert Team</h3>
-                  <p className="text-sm text-slate-600">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 sm:p-6 rounded-2xl mb-3 sm:mb-4">
+                  <Users className="w-10 h-10 sm:w-12 sm:h-12 text-green-600 mx-auto mb-2 sm:mb-4" />
+                  <h3 className="font-bold text-slate-800 mb-1 sm:mb-2 text-base sm:text-lg">Expert Team</h3>
+                  <p className="text-xs sm:text-sm text-slate-600">
                     Our expert team has expertise in their domain and the ability to deliver quality work.
                   </p>
                 </div>
               </div>
 
               <div className="text-center">
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-2xl mb-4">
-                  <Headphones className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-                  <h3 className="font-bold text-slate-800 mb-2">24/7 Support</h3>
-                  <p className="text-sm text-slate-600">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 sm:p-6 rounded-2xl mb-3 sm:mb-4">
+                  <Headphones className="w-10 h-10 sm:w-12 sm:h-12 text-purple-600 mx-auto mb-2 sm:mb-4" />
+                  <h3 className="font-bold text-slate-800 mb-1 sm:mb-2 text-base sm:text-lg">24/7 Support</h3>
+                  <p className="text-xs sm:text-sm text-slate-600">
                     Extraordinary customer support - get help and find answers to questions in real-time.
                   </p>
                 </div>
@@ -405,20 +405,20 @@ const ContactUsPage = () => {
           </div>
 
           {/* Quick Action Banner */}
-          <div className="mt-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white text-center">
-            <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>
-            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-              Join thousands of satisfied customers who trust Web Online CA for their business and tax needs.
+          <div className="mt-8 sm:mt-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-4 sm:p-8 text-white text-center">
+            <h2 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Ready to Get Started?</h2>
+            <p className="text-blue-100 mb-4 sm:mb-6 max-w-lg sm:max-w-2xl mx-auto text-sm sm:text-base">
+              Join thousands of satisfied customers who trust Switch To Legal for their business and tax needs.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <a 
                 href="tel:+917413826826"
-                className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-8 rounded-xl transition-all duration-300 flex items-center justify-center"
+                className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-2 sm:py-3 px-4 sm:px-8 rounded-xl transition-all duration-300 flex items-center justify-center text-sm sm:text-base"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Call Now: +91 7413 826826
               </a>
-              <button className="bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 flex items-center justify-center">
+              <button className="bg-blue-800 hover:bg-blue-900 text-white font-semibold py-2 sm:py-3 px-4 sm:px-8 rounded-xl transition-all duration-300 flex items-center justify-center text-sm sm:text-base">
                 Try Our Services
                 <ArrowRight className="w-5 h-5 ml-2" />
               </button>
@@ -427,9 +427,6 @@ const ContactUsPage = () => {
         </div>
       </div>
       <Footer />
-
-      {/* Scroll to Top Button */}
-
     </div>
   );
 };

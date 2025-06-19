@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-// app.use('/api/services', serviceRoutes);
+app.use('/api/services', serviceRoutes);
 app.use('/api/service-info', serviceInfoRoutes);
 
 app.listen(PORT, () => {

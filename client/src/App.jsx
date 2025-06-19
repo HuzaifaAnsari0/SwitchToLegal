@@ -7,7 +7,6 @@ import ContactUsPage from './pages/ContactUsPage';
 import ITRPage from './pages/ITRPage';
 import GSTRegistrationPage from './pages/GSTRegistrationPage';
 import NGOPage from './pages/NGOPage';
-import GSTReturnPage from './pages/GSTReturnPage';
 import ServicePage from './pages/ServicePage';
 
 function App() {
@@ -21,7 +20,6 @@ function App() {
         <Route path="/itr-filing" element={<ITRPage />} />
         <Route path="/gst-registration" element={<GSTRegistrationPage />} />
         <Route path="/ngo" element={<NGOPage />} />
-        <Route path="/gst-return" element={<GSTReturnPage />} />
         {/* Dynamic service route */}
         <Route path="/service/:serviceSlug" element={<ServicePage />} />
         {/* Add more routes as needed */}

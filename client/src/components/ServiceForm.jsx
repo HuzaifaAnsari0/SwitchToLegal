@@ -10,6 +10,8 @@ const ServiceForm = ({ serviceType }) => {
     referralCode: ''
   });
 
+  const url = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -22,7 +24,7 @@ const ServiceForm = ({ serviceType }) => {
     
     try {
       // Send data to backend
-      const response = await fetch('/api/submit-service', {
+      const response = await fetch(`${url}/api/services/submit-service`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
