@@ -14,7 +14,7 @@ const ServicePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [expandedFaq, setExpandedFaq] = useState(null);
-  const url = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const url = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
   useEffect(() => {
     const fetchServiceData = async () => {
