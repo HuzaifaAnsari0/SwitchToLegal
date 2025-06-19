@@ -24,7 +24,7 @@ const ServiceForm = ({ serviceType }) => {
     
     try {
       // Send data to backend
-      const response = await fetch(`${url}/services/submit-service`, {
+      const response = await fetch(`${url}/submit-service`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

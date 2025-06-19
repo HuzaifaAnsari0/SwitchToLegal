@@ -21,7 +21,7 @@ const ServicePage = () => {
       try {
         setLoading(true);
         console.log('Fetching service data for:', serviceSlug);
-        const response = await fetch(`${url}/service-info/${serviceSlug}`);
+        const response = await fetch(`${url}/${serviceSlug}`);
         
         //console.log('Response status:', response.status);
         
