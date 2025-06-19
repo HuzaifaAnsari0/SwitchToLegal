@@ -65,8 +65,8 @@ router.post('/submit-service', async (req, res) => {
     // Send WhatsApp message
     await twilioClient.messages.create({
       body: `New ${serviceType} Service Request\nName: ${name}\nMobile: ${mobile}\nEmail: ${email}\nAddress: ${address}\n${referralCode ? `Referral Code: ${referralCode}` : ''}`,
-      from: `whatsapp:${twilioNumber}`,
-      to: `whatsapp:${adminNumber}`
+      from: `whatsapp:+14155238886`,
+      to: `whatsapp:+917738962559`
     });
 
     res.status(200).json({ message: 'Service request submitted successfully' });
