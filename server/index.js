@@ -7,7 +7,9 @@ const serviceRoutes = require('./src/routes/serviceRoutes');
 const serviceInfoRoutes = require('./src/routes/serviceInfoRoutes');
 
 connectDB();
-app.use(cors());
+app.use(cors({
+  origin: ["https://switchtolegal.com", "http://localhost:5173"]
+}));
 app.use(express.json());
 
 // Routes
