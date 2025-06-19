@@ -19,6 +19,11 @@ const twilioClient = twilio(
   process.env.TWILIO_AUTH_TOKEN
 );
 
+const twilioNumber = process.env.TWILIO_WHATSAPP_NUMBER
+  .replace(/[\u200E\u200F\u200B]/g, '')  // remove invisible characters
+  .replace(/[^\d+]/g, '')                // allow only + and digits
+  .trim();
+
 const adminNumber = process.env.ADMIN_WHATSAPP_NUMBER
   .replace(/[\u200E\u200F\u200B]/g, '')  // remove invisible characters
   .replace(/[^\d+]/g, '')                // allow only + and digits
@@ -60,7 +65,7 @@ router.post('/submit-service', async (req, res) => {
     // Send WhatsApp message
     await twilioClient.messages.create({
       body: `New ${serviceType} Service Request\nName: ${name}\nMobile: ${mobile}\nEmail: ${email}\nAddress: ${address}\n${referralCode ? `Referral Code: ${referralCode}` : ''}`,
-      from: `whatsapp:${process.env.TWILIO_WHATSAPP_NUMBER}`,
+      from: `whatsapp:${twilioNumber}`,
       to: `whatsapp:${adminNumber}`
     });
 
