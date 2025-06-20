@@ -14,6 +14,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [mobileServicesDropdownOpen, setMobileServicesDropdownOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
@@ -61,10 +62,10 @@ const Navbar = () => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-
   useEffect(() => {
     setServicesDropdownOpen(false);
     setMobileMenuOpen(false);
+    setMobileServicesDropdownOpen(false);
   }, [location]);
 
   const scrollToService = (serviceId) => {
@@ -142,7 +143,10 @@ const Navbar = () => {
                     {serviceCategories.map((service) => (
                     <button
                       key={service.id}
-                      onClick={() => scrollToService(service.id)}
+                      onClick={() => {
+                        scrollToService(service.id);
+                        setMobileMenuOpen(false);
+                      }}
                       className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
                     >
                       {service.title}
@@ -189,54 +193,59 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="fixed inset-0 z-[100] bg-black/40 flex justify-end lg:hidden">
-            <div className="w-full max-w-xs bg-white shadow-xl rounded-l-lg py-4 border-l border-slate-200 h-full overflow-y-auto flex flex-col animate-slide-in-right">
-              <div className="flex flex-col space-y-2 px-4">
-                {/* Services Dropdown in Mobile Menu */}
-                <div className="border-b border-slate-200 pb-2">
-                  <button
-                    className="w-full flex items-center justify-between font-medium text-slate-700 mb-2 px-2 py-2 rounded-lg focus:outline-none"
-                    onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                    aria-haspopup="true"
-                    aria-expanded={servicesDropdownOpen}
-                  >
-                    <span>Services</span>
-                    {servicesDropdownOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                  </button>
-                  {servicesDropdownOpen && (
-                    <div className="grid grid-cols-1 gap-1 max-h-[50vh] overflow-y-auto">
-                      {serviceCategories.map((service) => (
-                        <button
-                          key={service.id}
-                          onClick={() => scrollToService(service.id)}
-                          className="text-left text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors"
-                        >
-                          {service.title}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <Link 
-                  to="/about"
-                  className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <FileText className="w-4 h-4 text-slate-400 mr-3" />
-                  About
-                </Link>
-                <Link 
-                  to="/contact"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg flex items-center justify-center mt-4"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Contact Us
-                </Link>
-              </div>
-            </div>
-            {/* Overlay to close menu */}
-            <div className="flex-1" onClick={() => setMobileMenuOpen(false)} />
-          </div>
+  <div className="w-full max-w-xs bg-white shadow-xl rounded-l-lg py-4 border-l border-slate-200 h-full overflow-y-auto flex flex-col animate-slide-in-right">
+    <div className="border-b border-slate-200 pb-2">
+      <button
+        className="w-full flex items-center justify-between font-medium text-slate-700 mb-2 px-2 py-2 rounded-lg focus:outline-none"
+        onClick={() => setMobileServicesDropdownOpen(!mobileServicesDropdownOpen)}
+        aria-haspopup="true"
+        aria-expanded={mobileServicesDropdownOpen}
+      >
+        <span>Services</span>
+        {mobileServicesDropdownOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+      </button>
+      {mobileServicesDropdownOpen && (
+        <div className="grid grid-cols-1 gap-1 max-h-[50vh] overflow-y-auto">
+          {serviceCategories.map((service) => (
+            <button
+              key={service.id}
+              onClick={() => {
+                scrollToService(service.id);
+                setMobileMenuOpen(false);
+                setMobileServicesDropdownOpen(false);
+              }}
+              className="text-left text-sm text-slate-600 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors"
+            >
+              {service.title}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+
+    {/* These links should be inside the mobile menu panel */}
+    <Link 
+      to="/about"
+      className="flex items-center text-slate-700 hover:text-blue-600 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors"
+      onClick={() => setMobileMenuOpen(false)}
+    >
+      <FileText className="w-4 h-4 text-slate-400 mr-3" />
+      About
+    </Link>
+    <Link 
+      to="/contact"
+      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg flex items-center justify-center mt-4"
+      onClick={() => setMobileMenuOpen(false)}
+    >
+      <Phone className="w-4 h-4 mr-2" />
+      Contact Us
+    </Link>
+  </div>
+
+  {/* Overlay to close the menu */}
+  <div className="flex-1" onClick={() => setMobileMenuOpen(false)} />
+</div>
+
         )}
       </div>
       {/* Optional: Add custom animation for mobile menu */}

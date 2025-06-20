@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
     Phone,
     Mail,
@@ -12,7 +12,30 @@ import {
 } from 'lucide-react';
 import logo from '../assets/logo.png';
 
+  const serviceCategories = [
+    { id: 'citizen-documents', title: 'Citizen Documents' },
+    { id: 'legal-documents', title: 'Legal Documents' },
+    { id: 'trade-mark-&-ipr-registration', title: 'Trade Mark & IPR Registration' },
+    { id: 'gst-&-itr-registration', title: 'GST & ITR Registration' },
+    { id: 'e-commerce-&-digital-platform', title: 'E-Commerce & Digital Platform' }
+  ];
+
 const Footer = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    // Scroll to the service section by id
+    const scrollToService = (serviceId) => {
+        if (location.pathname !== '/') {
+            navigate('/', { state: { scrollTo: serviceId } });
+            return;
+        }
+        // If already on home, scroll to the section
+        const el = document.getElementById(serviceId);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <footer className="bg-slate-900 text-white py-12">
             <div className="container mx-auto px-4">
@@ -40,33 +63,22 @@ const Footer = () => {
                         </div>
                     </div>
                     <div>
-                        <h4 className="font-semibold mb-4">Services</h4>
+                        <h4 className="font-semibold mb-4">Service Categories</h4>
                         <ul className="space-y-2 text-slate-400 text-sm">
-                            <li>
-                                <Link to="/itr-filing" className="hover:text-blue-400 transition-colors">
-                                    ITR Filing
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/gst-registration" className="hover:text-blue-400 transition-colors">
-                                    GST Registration
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/dsc-inquiry" className="hover:text-blue-400 transition-colors">
-                                    DSC
-                                </Link>
-                            </li>
-                            <li>
-                                <button className="hover:text-blue-400 transition-colors">
-                                    Company Registration
-                                </button>
-                            </li>
-                            <li>
-                                <Link to="/ngo" className="hover:text-blue-400 transition-colors">
-                                    Our NGO
-                                </Link>
-                            </li>
+                            {serviceCategories.map(category => (
+                                <li key={category.id}>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            scrollToService(category.id);
+                                        }}
+                                        className="hover:text-blue-400 transition-colors text-left w-full"
+                                        style={{ background: 'none', border: 'none', padding: 0, margin: 0, cursor: 'pointer' }}
+                                    >
+                                        {category.title}
+                                    </button>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div>
@@ -82,10 +94,10 @@ const Footer = () => {
                                 <a href="#careers" className="hover:text-blue-400 transition-colors">Careers</a>
                             </li>
                             <li>
-                                <a href="#privacy" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
+                                <a href="/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
                             </li>
                             <li>
-                                <a href="#terms" className="hover:text-blue-400 transition-colors">Terms of Service</a>
+                                <a href="/terms-and-conditions" className="hover:text-blue-400 transition-colors">Terms and Condition</a>
                             </li>
                         </ul>
                     </div>

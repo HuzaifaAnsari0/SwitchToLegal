@@ -75,7 +75,11 @@ export default function CorporateLegalUI() {
                 { id: 'driving-license', title: 'Driving License', desc: '2/4/3 Wheeler + TR/LMV', icon: <CarFront className="w-6 h-6" /> },
                 { id: 'newspaper-notice', title: 'News Paper Published', desc: 'Public notice publication', icon: <FileText className="w-6 h-6" /> },
                 { id: 'senior-citizen', title: 'Senior Citizen Card', desc: 'E-Shram Card services', icon: <UserCheck className="w-6 h-6" /> },
-                { id: 'cast-certificate', title: 'Cast Certificate', desc: 'NC/EWS/IC/DC/PCC', icon: <FileText className="w-6 h-6" /> }
+                { id: 'cast-certificate', title: 'Cast Certificate', desc: 'NC/EWS/IC/DC/PCC', icon: <FileText className="w-6 h-6" /> },
+                { id: 'family-documents-kyc', title: 'Family Documents KYC', desc: 'Family identification services', icon: <UserCheck className="w-6 h-6" /> },
+                { id: 'police-clearance-certificate', title: 'Police Clearance Certificate', desc: 'Criminal record verification', icon: <FileText className="w-6 h-6" /> },
+                { id: 'apostille-certificate', title: 'Apostille Certificate', desc: 'International document verification', icon: <FileText className="w-6 h-6" /> },
+                { id: 'hsrp', title: 'HSRP', desc: 'High-Security Registration Plate', icon: <FileText className="w-6 h-6" /> }
             ]
         },
         {
@@ -256,7 +260,7 @@ export default function CorporateLegalUI() {
 
     const stats = [
         { number: '25,000+', title: 'Satisfied Clients' },
-        { number: '50,000+', title: 'Returns Filed' },
+        { number: '1,00,000+', title: 'Applications Submitted Annually' },
         { number: '15+', title: 'Years Experience' },
         { number: '99.8%', title: 'Success Rate' }
     ];
@@ -271,26 +275,27 @@ export default function CorporateLegalUI() {
         }
     };
 
-    const handleInputChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form submitted:', formData);
-    };
-
     // Update the filteredServices logic
-    const filteredServices = services.map(category => ({
-        ...category,
-        items: category.items.filter(service => 
-            service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            service.desc.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-    })).filter(category => category.items.length > 0);
+    const filteredServices = services
+        .map(category => {
+            // If searchQuery matches the category name, show all items in that category
+            if (
+                searchQuery &&
+                category.category.toLowerCase().includes(searchQuery.toLowerCase())
+            ) {
+                return category;
+            }
+            // Otherwise, filter items by title/desc/category
+            return {
+                ...category,
+                items: category.items.filter(service =>
+                    service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    service.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    category.category.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+            };
+        })
+        .filter(category => category.items.length > 0);
 
     return (
         <div className="font-sans antialiased text-gray-900 overflow-x-hidden bg-white">
@@ -298,56 +303,73 @@ export default function CorporateLegalUI() {
             <Navbar />
 
             {/* Professional Hero Section */}
-                        <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white pt-24 pb-8 md:pt-28 md:pb-10">
-                            <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-                            <div className="container mx-auto px-4 relative z-10">
-                                <div className="max-w-4xl mx-auto">
-                                    <div className="text-center mb-8 md:mb-12">
-                                        <div className="inline-flex items-center bg-blue-600/20 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 rounded-full text-blue-300 text-xs md:text-sm font-medium mb-4 md:mb-6">
-                                            <Shield className="w-4 h-4 mr-2" />
-                                            Trusted Legal Partner
-                                        </div>
-                                        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">
-                                            Find Your <span className="text-blue-400">Legal Service</span>
-                                        </h1>
-                                        <p className="text-base md:text-lg mb-6 md:mb-8 text-slate-300">
-                                            Search from our comprehensive range of legal and compliance services
-                                        </p>
-                                    </div>
+            <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white pt-24 pb-8 md:pt-28 md:pb-10">
+                <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-8 md:mb-12">
+                            <div className="inline-flex items-center bg-blue-600/20 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 rounded-full text-blue-300 text-xs md:text-sm font-medium mb-4 md:mb-6">
+                                <Shield className="w-4 h-4 mr-2" />
+                                Trusted Legal Partner
+                            </div>
+                            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">
+                                Find Your <span className="text-blue-400">Legal Service</span>
+                            </h1>
+                            <p className="text-base md:text-lg mb-6 md:mb-8 text-slate-300">
+                                Search from our comprehensive range of legal and compliance services
+                            </p>
+                        </div>
 
-                                    {/* Search Section */}
-                                    <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-6 mb-6 md:mb-8">
-                                        <div className="relative">
-                                            <div className="flex items-center">
-                                                <div className="flex-1 relative">
-                                                    <input
-                                                        type="text"
-                                                        value={searchQuery}
-                                                        onChange={(e) => setSearchQuery(e.target.value)}
-                                                        placeholder="Search for services (e.g., ITR Filing, GST Registration, DSC)"
-                                                        className="w-full px-4 md:px-6 py-3 md:py-4 pl-10 md:pl-12 text-slate-800 bg-slate-50 rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 text-sm md:text-base"
-                                                    />
-                                                    <Search className="w-5 h-5 text-slate-400 absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Popular Searches */}
-                                        <div className="mt-4 md:mt-6">
-                                            <div className="text-xs md:text-sm text-slate-500 mb-2 md:mb-3">Popular Searches:</div>
-                                            <div className="flex flex-wrap gap-2">
-                                                {['ITR Filing', 'GST Registration', 'DSC', 'Company Registration', 'Trademark'].map((tag, index) => (
-                                                    <button
-                                                        key={index}
-                                                        onClick={() => setSearchQuery(tag)}
-                                                        className="px-3 py-1.5 md:px-4 md:py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs md:text-sm font-medium transition-colors"
-                                                    >
-                                                        {tag}
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        </div>
+                        {/* Search Section */}
+                        <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-6 mb-6 md:mb-8">
+                            <div className="relative">
+                                <div className="flex items-center">
+                                    <div className="flex-1 relative">
+                                        <input
+                                            type="text"
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            placeholder="Search for services (e.g., ITR Filing, GST Registration, DSC)"
+                                            className="w-full px-4 md:px-6 py-3 md:py-4 pl-10 md:pl-12 text-slate-800 bg-slate-50 rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 text-sm md:text-base"
+                                        />
+                                        <Search className="w-5 h-5 text-slate-400 absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2" />
+                                        {searchQuery && (
+                                            <button
+                                                onClick={() => setSearchQuery('')}
+                                                className="absolute right-3 md:right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                                                aria-label="Clear search"
+                                            >
+                                                <X className="w-5 h-5" />
+                                            </button>
+                                        )}
                                     </div>
+                                </div>
+                            </div>
+
+                            {/* Popular Searches */}
+                            <div className="mt-4 md:mt-6">
+                                <div className="text-xs md:text-sm text-slate-500 mb-2 md:mb-3">Popular Searches:</div>
+                                <div className="flex flex-wrap gap-2">
+                                    {['Citizen Documents', 'Legal Documents', 'GST & ITR Registration', 'Trade Mark & IPR Registration'].map((tag, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => setSearchQuery(tag)}
+                                            className="px-3 py-1.5 md:px-4 md:py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs md:text-sm font-medium transition-colors"
+                                        >
+                                            {tag}
+                                        </button>
+                                    ))}
+                                    {searchQuery && (
+                                        <button
+                                            onClick={() => setSearchQuery('')}
+                                            className="px-3 py-1.5 md:px-4 md:py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg text-xs md:text-sm font-medium transition-colors"
+                                        >
+                                            Clear
+                                        </button>
+                                    )}  
+                                </div>
+                            </div>
+                        </div>
 
                                     {/* Quick Stats */}
                                     {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -494,9 +516,6 @@ export default function CorporateLegalUI() {
                             </div>
                             <h3 className="text-xl font-semibold mb-4">Tax Advisory Services</h3>
                             <p className="text-slate-400 mb-6">Comprehensive tax planning, compliance, and filing services for individuals, businesses, and NRIs with expert guidance throughout the process.</p>
-                            <button className="text-blue-400 font-semibold flex items-center hover:text-blue-300 transition-colors">
-                                Learn More <ArrowRight className="w-4 h-4 ml-2" />
-                            </button>
                         </div>
                         <div className="bg-slate-800 p-8 rounded-xl hover:bg-slate-700 transition-colors">
                             <div className="bg-green-600 p-4 rounded-lg w-16 h-16 flex items-center justify-center mb-6">
@@ -504,9 +523,6 @@ export default function CorporateLegalUI() {
                             </div>
                             <h3 className="text-xl font-semibold mb-4">Corporate Solutions</h3>
                             <p className="text-slate-400 mb-6">End-to-end business management services including incorporation, compliance, regulatory filings, and strategic business advisory.</p>
-                            <button className="text-blue-400 font-semibold flex items-center hover:text-blue-300 transition-colors">
-                                Learn More <ArrowRight className="w-4 h-4 ml-2" />
-                            </button>
                         </div>
                         <div className="bg-slate-800 p-8 rounded-xl hover:bg-slate-700 transition-colors">
                             <div className="bg-purple-600 p-4 rounded-lg w-16 h-16 flex items-center justify-center mb-6">
@@ -514,9 +530,6 @@ export default function CorporateLegalUI() {
                             </div>
                             <h3 className="text-xl font-semibold mb-4">Legal Advisory</h3>
                             <p className="text-slate-400 mb-6">Professional legal consultation, documentation, litigation support, and regulatory compliance across various practice areas.</p>
-                            <button className="text-blue-400 font-semibold flex items-center hover:text-blue-300 transition-colors">
-                                Learn More <ArrowRight className="w-4 h-4 ml-2" />
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -569,90 +582,6 @@ export default function CorporateLegalUI() {
                     </div>
                 </div>
             </div>
-            
-            {/* Contact Section - Corporate */}
-            <div className="py-20 bg-white">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-4xl mx-auto">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl font-bold text-slate-800 mb-4">Get Professional Consultation</h2>
-                            <p className="text-slate-600">Connect with our experts for personalized advice on your tax and legal requirements.</p>
-                        </div>
-                        
-                        <form onSubmit={handleSubmit} className="bg-slate-50 rounded-2xl p-8 border border-slate-200">
-                            <div className="grid md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <label className="block text-slate-700 font-medium mb-2">Full Name *</label>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleInputChange}
-                                        className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors bg-white"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-slate-700 font-medium mb-2">Phone Number *</label>
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        value={formData.phone}
-                                        onChange={handleInputChange}
-                                        className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors bg-white"
-                                        required
-                                    />
-                                </div>
-                            </div>
-                            
-                            <div className="mb-6">
-                                <label className="block text-slate-700 font-medium mb-2">Email Address *</label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors bg-white"
-                                    required
-                                />
-                            </div>
-                            
-                            <div className="mb-6">
-                                <label className="block text-slate-700 font-medium mb-2">Service Required *</label>
-                                <input
-                                    type="text"
-                                    name="subject"
-                                    value={formData.subject}
-                                    onChange={handleInputChange}
-                                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors bg-white"
-                                    placeholder="e.g., ITR Filing, GST Registration, Legal Consultation"
-                                    required
-                                />
-                            </div>
-                            
-                            <div className="mb-8">
-                                <label className="block text-slate-700 font-medium mb-2">Message</label>
-                                <textarea
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleInputChange}
-                                    rows="4"
-                                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-colors bg-white"
-                                    placeholder="Please provide details about your requirements..."
-                                ></textarea>
-                            </div>
-                            
-                            <button
-                                type="submit"
-                                className="w-full bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center shadow-lg transition-all duration-300"
-                            >
-                                Submit Inquiry <ArrowRight className="w-5 h-5 ml-2" />
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            
             <Footer />
         </div>
     );
