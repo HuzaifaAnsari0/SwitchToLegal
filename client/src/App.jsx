@@ -5,7 +5,7 @@ import About from './pages/About';
 import ContactUsPage from './pages/ContactUsPage';
 import NGOPage from './pages/NGOPage';
 import ServicePage from './pages/ServicePage';
-import TermsAndCondition from './pages/termsAndCondition';
+import TermsAndCondition from './pages/TermsAndCondition';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
