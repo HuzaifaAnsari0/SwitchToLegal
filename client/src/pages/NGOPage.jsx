@@ -4,11 +4,24 @@ import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import scanner from '../assets/scanner.png';
 import ServiceForm from '../components/ServiceForm';
+import Image1 from '../assets/youth.png';
+import Image2 from '../assets/group.png';   
+import Image3 from '../assets/elder.png';
 
 const HumanityZonePlusWebsite = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [currentImage, setCurrentImage] = useState(0);
+  
+  const images = [
+  { src: Image1, alt: "Youth Empowerment" },
+  { src: Image2, alt: "Community Engagement" },
+  { src: Image3, alt: "Elderly Support" }
+];
+
+  const nextImage = () => setCurrentImage((prev) => (prev + 1) % images.length);
+  const prevImage = () => setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -93,12 +106,9 @@ const HumanityZonePlusWebsite = () => {
             </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                My Zone,
+                 Humanity Zone Plus
               </span>
-              <br />
-              <span className="bg-gradient-to-r from-green-500 to-blue-500 bg-clip-text text-transparent">
-                My Responsibility
-              </span>
+              
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
               Empowering communities through youth-led initiatives, civic engagement, and sustainable development. 
@@ -139,7 +149,7 @@ const HumanityZonePlusWebsite = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              About Humanity Zone Plus
+              About
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Since 2018, we've been transforming communities in Mumbai through youth empowerment and civic engagement
@@ -178,14 +188,42 @@ const HumanityZonePlusWebsite = () => {
                 </div>
               </div>
             </div>
-            <div className="relative">
-              <div className="w-full h-96 bg-gradient-to-br from-blue-400 to-purple-600 rounded-3xl flex items-center justify-center text-white text-6xl font-bold shadow-2xl">
-                🌍
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-2xl animate-pulse">
-                ✨
-              </div>
-            </div>
+           <div className="relative w-full max-w-lg mx-auto">
+  <img
+    src={images[currentImage].src}
+    alt={images[currentImage].alt}
+    className="w-full h-auto rounded-2xl shadow-lg object-cover transition-all duration-500"
+  />
+  {/* Left arrow */}
+  <button
+    onClick={prevImage}
+    className="absolute top-1/2 left-2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow transition"
+    aria-label="Previous"
+    style={{ zIndex: 2 }}
+  >
+    <ChevronDown className="rotate-90 w-6 h-6 text-blue-600" />
+  </button>
+  {/* Right arrow */}
+  <button
+    onClick={nextImage}
+    className="absolute top-1/2 right-2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow transition"
+    aria-label="Next"
+    style={{ zIndex: 2 }}
+  >
+    <ChevronDown className="-rotate-90 w-6 h-6 text-blue-600" />
+  </button>
+  {/* Dots */}
+  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+    {images.map((_, idx) => (
+      <button
+        key={idx}
+        onClick={() => setCurrentImage(idx)}
+        className={`w-3 h-3 rounded-full ${currentImage === idx ? 'bg-blue-600' : 'bg-gray-300'}`}
+        aria-label={`Go to slide ${idx + 1}`}
+      />
+    ))}
+  </div>
+</div>
           </div>
         </div>
       </section>

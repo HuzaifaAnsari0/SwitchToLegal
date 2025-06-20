@@ -37,7 +37,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-slate-900 text-white py-12">
+        <footer className="bg-slate-900 text-white py-10 pb-7">
             <div className="container mx-auto px-4">
                 <div className="grid md:grid-cols-4 gap-8 mb-12">
                     <div>
@@ -51,13 +51,13 @@ const Footer = () => {
                             Comprehensive Tax, Legal & Compliance Solutions for Businesses and Individuals.
                         </p>
                         <div className="flex space-x-3 mt-4">
-                            <a href="tel:+911234567890" className="hover:text-blue-400 transition-colors">
+                            <a href="tel:+91 98672 22166" className="hover:text-blue-400 transition-colors">
                                 <Phone className="w-5 h-5" />
                             </a>
                             <a href="mailto:switchtolegal@gmail.com" className="hover:text-blue-400 transition-colors">
                                 <Mail className="w-5 h-5" />
                             </a>
-                            <a href="https://wa.me/911234567890" className="hover:text-blue-400 transition-colors">
+                            <a href="https://wa.me/919867222166" className="hover:text-blue-400 transition-colors">
                                 <MessageSquare className="w-5 h-5" />
                             </a>
                         </div>
@@ -106,7 +106,7 @@ const Footer = () => {
                         <ul className="space-y-2 text-slate-400 text-sm">
                             <li>
                                 <span className="flex items-center">
-                                    <Phone className="w-4 h-4 mr-2" /> +91 12345 67890
+                                    <Phone className="w-4 h-4 mr-2" /> +91 98672 22166
                                 </span>
                             </li>
                             <li>

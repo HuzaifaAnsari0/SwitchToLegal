@@ -20,10 +20,12 @@ import {
   ArrowRight,
   Scale,
   Menu,
-  X
+  X,
+  Contact
 } from 'lucide-react';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
+import ServiceForm from '../components/ServiceForm';
 
 const ContactUsPage = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -64,7 +66,7 @@ const ContactUsPage = () => {
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Call Us",
-      primary: "+91 7413 826826",
+      primary: "+91 98672 22166",
       secondary: "Tax Support Desk",
       description: "Available 24/7 for immediate assistance",
       color: "bg-green-500"
@@ -72,7 +74,7 @@ const ContactUsPage = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email Us",
-      primary: "support@webonlineca.com",
+      primary: "switchtolegal@gmail.com",
       secondary: "Quick Response",
       description: "Get detailed answers to your queries",
       color: "bg-blue-500"
@@ -145,6 +147,10 @@ const ContactUsPage = () => {
       description: "Round-the-clock customer support available"
     }
   ];
+
+  const handleTryServicesClick = () => {
+    window.location.href = '/';
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
@@ -221,24 +227,6 @@ const ContactUsPage = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Why Choose Us */}
-              <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-4 sm:p-8 text-white">
-                <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-center">Why Choose Switch To Legal?</h2>
-                <div className="space-y-4 sm:space-y-6">
-                  {features.map((feature, index) => (
-                    <div key={index} className="flex items-start">
-                      <div className="bg-white/20 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4">
-                        <div className="text-white">{feature.icon}</div>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold mb-1 sm:mb-2">{feature.title}</h3>
-                        <p className="text-blue-100 text-xs sm:text-base">{feature.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Right Side - Contact Form */}
@@ -247,117 +235,9 @@ const ContactUsPage = () => {
                 <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-1 sm:mb-2">Request a Free Call Back</h2>
                 <p className="text-slate-600 text-sm sm:text-base">We'll inspire and assist you with your requirements</p>
               </div>
+              
 
-              {isSubmitted && (
-                <div className="bg-green-50 border border-green-200 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-600 mr-2 sm:mr-3" />
-                  <div>
-                    <p className="text-green-800 font-medium text-sm sm:text-base">Message sent successfully!</p>
-                    <p className="text-green-600 text-xs sm:text-sm">We'll get back to you within 30 minutes.</p>
-                  </div>
-                </div>
-              )}
-
-              <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
-                <div>
-                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
-                    Enter Your Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="Your full name"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-sm sm:text-base"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
-                    Enter Mobile Number
-                  </label>
-                  <input
-                    type="tel"
-                    name="mobile"
-                    value={formData.mobile}
-                    onChange={handleInputChange}
-                    placeholder="Your mobile number"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-sm sm:text-base"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
-                    Enter Email ID
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="Your email address"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-sm sm:text-base"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
-                    Select Subject
-                  </label>
-                  <select
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-sm sm:text-base"
-                    required
-                  >
-                    <option value="">--Select Subject--</option>
-                    <option value="itr-filing">ITR e-filing</option>
-                    <option value="company-registration">Company Registration</option>
-                    <option value="digital-signature">Digital Signature</option>
-                    <option value="gst-services">GST Services</option>
-                    <option value="accounting">Accounting Solutions</option>
-                    <option value="tds-services">TDS Services</option>
-                    <option value="general-inquiry">General Inquiry</option>
-                    <option value="technical-support">Technical Support</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1 sm:mb-2">
-                    Enter Your Message
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Describe your requirements or ask any questions..."
-                    rows="4"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors text-sm sm:text-base"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg flex items-center justify-center text-base"
-                >
-                  <Send className="w-5 h-5 mr-2" />
-                  Send Message
-                </button>
-
-                <div className="text-center pt-2 sm:pt-4">
-                  <p className="text-xs sm:text-sm text-slate-600">
-                    Or call us directly at{' '}
-                    <a href="tel:+917413826826" className="text-blue-600 font-semibold hover:underline">
-                      +91 7413 826826
-                    </a>
-                  </p>
-                </div>
-              </form>
+              <ServiceForm serviceType="Contact" />
             </div>
           </div>
 
@@ -416,9 +296,12 @@ const ContactUsPage = () => {
                 className="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-2 sm:py-3 px-4 sm:px-8 rounded-xl transition-all duration-300 flex items-center justify-center text-sm sm:text-base"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                Call Now: +91 7413 826826
+                Call Now: +91 98672 22166
               </a>
-              <button className="bg-blue-800 hover:bg-blue-900 text-white font-semibold py-2 sm:py-3 px-4 sm:px-8 rounded-xl transition-all duration-300 flex items-center justify-center text-sm sm:text-base">
+              <button
+                className="bg-blue-800 hover:bg-blue-900 text-white font-semibold py-2 sm:py-3 px-4 sm:px-8 rounded-xl transition-all duration-300 flex items-center justify-center text-sm sm:text-base"
+                onClick={handleTryServicesClick}
+              >
                 Try Our Services
                 <ArrowRight className="w-5 h-5 ml-2" />
               </button>

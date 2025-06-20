@@ -48,21 +48,21 @@ const SwitchToLegal = () => {
       items: ['Property Docs', 'Registration', 'Verification', 'Legal Clearance']
     },
     {
-      title: 'Trade Mark & IPR',
+      title: 'Trade Mark & IPR Registration',
       description: 'Intellectual property protection',
       icon: Award,
       color: 'from-purple-500 to-purple-600',
       items: ['Trademark Registration', 'IPR Protection', 'Brand Security', 'Legal Rights']
     },
     {
-      title: 'GST & ITR',
+      title: 'GST & ITR Registration',
       description: 'Tax registration & filing',
       icon: CreditCard,
       color: 'from-yellow-500 to-yellow-600',
       items: ['GST Registration', 'ITR Filing', 'Tax Compliance', 'Returns']
     },
     {
-      title: 'Tours & Visa',
+      title: 'Tours, Travel & Visa',
       description: 'Travel & visa assistance',
       icon: Plane,
       color: 'from-cyan-500 to-cyan-600',
@@ -132,9 +132,9 @@ const SwitchToLegal = () => {
       icon: Phone,
       color: 'from-blue-500 to-blue-600',
       items: [
-        { type: 'phone', value: '8655540123', href: 'tel:8655540123' },
-        { type: 'phone', value: '8898681037', href: 'tel:8898681037' },
-        { type: 'phone', value: '7666463388', href: 'tel:7666463388' }
+        { type: 'phone', value: '+91 98672 22166', href: 'tel:+919867222166' },
+        { type: 'phone', value: '+91 88986 81037', href: 'tel:+918898681037' },
+        { type: 'phone', value: '+91 76664 63388', href: 'tel:+917666463388' }
       ]
     },
     {
@@ -167,7 +167,7 @@ const SwitchToLegal = () => {
           <div className="max-w-6xl mx-auto text-center">
             <div className="mb-8">
               <h1 className="text-3xl xs:text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
-                SWITCH TO LEGAL 2.0
+                SWITCH TO LEGAL
               </h1>
               <p className="text-base xs:text-lg md:text-xl mb-6 text-gray-600 max-w-3xl mx-auto">
                 Your trusted partner for legal matters and business expansion with national reach
