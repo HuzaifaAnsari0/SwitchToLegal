@@ -234,7 +234,7 @@ const Navbar = () => {
     </Link>
     <Link 
       to="/contact"
-      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg flex items-center justify-center mt-4"
+      className="w-72 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg flex items-center justify-center mt-4"
       onClick={() => setMobileMenuOpen(false)}
     >
       <Phone className="w-4 h-4 mr-2" />

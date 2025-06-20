@@ -7,12 +7,14 @@ import NGOPage from './pages/NGOPage';
 import ServicePage from './pages/ServicePage';
 import TermsAndCondition from './pages/TermsAndCondition';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import NotFoundPage from './pages/404';
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
+          <Route path="*" element={<NotFoundPage />} />
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<ContactUsPage />} />

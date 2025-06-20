@@ -3,37 +3,43 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
     FileText,
     Phone,
-    Mail,
-    MessageSquare,
     Search,
-    Menu,
     X,
     CheckCircle,
-    ArrowRight,
     Shield,
     Award,
     Building,
     Users,
     Lock,
-    BarChart3,
     Briefcase,
     Scale,
     Calculator,
     Globe,
     UserCheck,
-    ClipboardList,
-    FileCheck,
-    PenLine,
     Store,
-    FileEdit,
-    UserPlus,
-    Bike,
     CarFront,
-    Truck,
     HeartPulse,
     Home,
     Banknote,
-    FileSignature
+    FileSignature,
+    FileCheck,
+    ShieldCheck,
+    Newspaper,
+    IdCard,
+    ContactRound,
+    FileKey,
+    MapPinCheck,
+    GraduationCap,
+    ShieldAlert,
+    BadgeIndianRupee,
+    Handshake,
+    Siren,
+    Receipt,
+    Repeat,
+    Contact,
+    FileX,
+    Gift,
+    Zap
 } from 'lucide-react';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
@@ -69,17 +75,17 @@ export default function CorporateLegalUI() {
                 { id: 'aadhar-card', title: 'Aadhaar Card', desc: 'Unique identification document', icon: <UserCheck className="w-6 h-6" /> },
                 { id: 'pan-tan', title: 'PAN TAN / TDS / TCS / DSC', desc: 'Tax and digital signature services', icon: <FileSignature className="w-6 h-6" /> },
                 { id: 'passport', title: 'Passport Services', desc: 'Fresh/Reissue/Tatkaal passport', icon: <Globe className="w-6 h-6" /> },
-                { id: 'gazette', title: 'Gazette Services', desc: 'Name/DOB/Religion changes', icon: <FileText className="w-6 h-6" /> },
-                { id: 'marriage-certificate', title: 'Marriage Certificate', desc: 'Official marriage documentation', icon: <FileText className="w-6 h-6" /> },
+                { id: 'gazette', title: 'Gazette Services', desc: 'Name/DOB/Religion changes', icon: <FileCheck className="w-6 h-6" /> },
+                { id: 'marriage-certificate', title: 'Marriage Certificate', desc: 'Official marriage documentation', icon: <ShieldCheck className="w-6 h-6" /> },
                 { id: 'voter-id', title: 'Voter ID', desc: 'Electoral identification', icon: <UserCheck className="w-6 h-6" /> },
                 { id: 'driving-license', title: 'Driving License', desc: '2/4/3 Wheeler + TR/LMV', icon: <CarFront className="w-6 h-6" /> },
-                { id: 'newspaper-notice', title: 'News Paper Published', desc: 'Public notice publication', icon: <FileText className="w-6 h-6" /> },
-                { id: 'senior-citizen', title: 'Senior Citizen Card', desc: 'E-Shram Card services', icon: <UserCheck className="w-6 h-6" /> },
+                { id: 'newspaper-notice', title: 'News Paper Published', desc: 'Public notice publication', icon: <Newspaper className="w-6 h-6" /> },
+                { id: 'senior-citizen', title: 'Senior Citizen Card', desc: 'E-Shram Card services', icon: <IdCard className="w-6 h-6" /> },
                 { id: 'cast-certificate', title: 'Cast Certificate', desc: 'NC/EWS/IC/DC/PCC', icon: <FileText className="w-6 h-6" /> },
-                { id: 'family-documents-kyc', title: 'Family Documents KYC', desc: 'Family identification services', icon: <UserCheck className="w-6 h-6" /> },
-                { id: 'police-clearance-certificate', title: 'Police Clearance Certificate', desc: 'Criminal record verification', icon: <FileText className="w-6 h-6" /> },
-                { id: 'apostille-certificate', title: 'Apostille Certificate', desc: 'International document verification', icon: <FileText className="w-6 h-6" /> },
-                { id: 'hsrp', title: 'HSRP', desc: 'High-Security Registration Plate', icon: <FileText className="w-6 h-6" /> }
+                { id: 'family-documents-kyc', title: 'Family Documents KYC', desc: 'Family identification services', icon: <ContactRound className="w-6 h-6" /> },
+                { id: 'police-clearance-certificate', title: 'Police Clearance Certificate', desc: 'Criminal record verification', icon: <Siren className="w-6 h-6" /> },
+                { id: 'apostille-certificate', title: 'Apostille Certificate', desc: 'International document verification', icon: <MapPinCheck className="w-6 h-6" /> },
+                { id: 'hsrp', title: 'HSRP', desc: 'High-Security Registration Plate', icon: <FileKey className="w-6 h-6" /> }
             ]
         },
         {
@@ -87,27 +93,27 @@ export default function CorporateLegalUI() {
             category: 'Education & Scholarship',
             items: [
                 { id: 'domicile', title: 'Domicile Certificate', desc: 'Residence proof documentation', icon: <FileText className="w-6 h-6" /> },
-                { id: 'income-certificate', title: 'Income Certificate', desc: 'Medical/Education/Property', icon: <FileText className="w-6 h-6" /> },
+                { id: 'income-certificate', title: 'Income Certificate', desc: 'Medical/Education/Property', icon: <Receipt className="w-6 h-6" /> },
                 { id: 'cast-certificate-tehsil', title: 'Cast Certificate by Tehsil', desc: 'ST/SC/OBC documentation', icon: <FileText className="w-6 h-6" /> },
                 { id: 'non-creamy-layer', title: 'Non-Creamy Layer Certificate', desc: '3yrs IC/DC/Cast Cert merger', icon: <FileText className="w-6 h-6" /> },
-                { id: 'ews', title: 'EWS Certificate', desc: 'Economically Weaker Section', icon: <FileText className="w-6 h-6" /> },
-                { id: 'education-scholarship', title: 'Education Scholarship', desc: 'CSC e-Governance & NGO support', icon: <Award className="w-6 h-6" /> }
+                { id: 'ews', title: 'EWS Certificate', desc: 'Economically Weaker Section', icon: <ShieldAlert className="w-6 h-6" /> },
+                { id: 'education-scholarship', title: 'Education Scholarship', desc: 'CSC e-Governance & NGO support', icon: <GraduationCap className="w-6 h-6" /> }
             ]
         },
         {
             id: 'legal-documents',
             category: 'Legal Documents',
             items: [
-                { id: 'will-registration', title: 'Will Registration', desc: 'Legal will documentation', icon: <FileText className="w-6 h-6" /> },
-                { id: 'sales-deed', title: 'Sales Deed', desc: 'Room Set Agreement', icon: <FileText className="w-6 h-6" /> },
-                { id: 'renouncing-affidavit', title: 'Renouncing Affidavit', desc: 'Legal bonds and affidavits', icon: <FileText className="w-6 h-6" /> },
-                { id: 'friendly-loan', title: 'Friendly Loan Affidavit', desc: 'Loan documentation', icon: <FileText className="w-6 h-6" /> },
+                { id: 'will-registration', title: 'Will Registration', desc: 'Legal will documentation', icon: <Repeat className="w-6 h-6" /> },
+                { id: 'sales-deed', title: 'Sales Deed', desc: 'Room Set Agreement', icon: <BadgeIndianRupee className="w-6 h-6" /> },
+                { id: 'renouncing-affidavit', title: 'Renouncing Affidavit', desc: 'Legal bonds and affidavits', icon: <Scale className="w-6 h-6" /> },
+                { id: 'friendly-loan', title: 'Friendly Loan Affidavit', desc: 'Loan documentation', icon: <Contact className="w-6 h-6" /> },
                 { id: 'marriage-declaration', title: 'Marriage Declaration', desc: 'Legal marriage documentation', icon: <FileText className="w-6 h-6" /> },
                 { id: 'gap-certificate', title: 'Gap Certificate', desc: 'Educational gap documentation', icon: <FileText className="w-6 h-6" /> },
-                { id: 'lost-certificate', title: 'Lost Certificate Affidavit', desc: 'Certificate replacement', icon: <FileText className="w-6 h-6" /> },
+                { id: 'lost-certificate', title: 'Lost Certificate Affidavit', desc: 'Certificate replacement', icon: <FileX className="w-6 h-6" /> },
                 { id: 'leave-licence', title: 'Leave & Licence', desc: 'Property licensing', icon: <FileText className="w-6 h-6" /> },
-                { id: 'partnership-deed', title: 'Partnership Deed', desc: 'Framing & Registration', icon: <FileText className="w-6 h-6" /> },
-                { id: 'gift-deed', title: 'Gift Deed', desc: 'Property gifting documentation', icon: <FileText className="w-6 h-6" /> }
+                { id: 'partnership-deed', title: 'Partnership Deed', desc: 'Framing & Registration', icon: <Handshake className="w-6 h-6" /> },
+                { id: 'gift-deed', title: 'Gift Deed', desc: 'Property gifting documentation', icon: <Gift className="w-6 h-6" /> }
             ]
         },
         {
@@ -117,8 +123,8 @@ export default function CorporateLegalUI() {
                 { id: 'registered-property', title: 'Registered Property', desc: 'MHADA/SRA/CIDCO/MMRDA', icon: <Home className="w-6 h-6" /> },
                 { id: 'sale-deed', title: 'Sale Deed', desc: 'Non-Registered/SLUM Property', icon: <FileText className="w-6 h-6" /> },
                 { id: 'will-probation', title: 'Will Registration', desc: 'Probation requirements', icon: <FileText className="w-6 h-6" /> },
-                { id: 'legal-heirs', title: 'Legal Heirs Certificate', desc: 'Tehsil documentation', icon: <FileText className="w-6 h-6" /> },
-                { id: 'electricity-transfer', title: 'Electricity Bill Transfer', desc: 'Name/Ownership transfer', icon: <FileText className="w-6 h-6" /> },
+                { id: 'legal-heirs', title: 'Legal Heirs Certificate', desc: 'Tehsil documentation', icon: <Scale className="w-6 h-6" /> },
+                { id: 'electricity-transfer', title: 'Electricity Bill Transfer', desc: 'Name/Ownership transfer', icon: <Zap className="w-6 h-6" /> },
                 { id: 'title-search', title: 'Title Search', desc: 'Bank loan verification', icon: <Search className="w-6 h-6" /> }
             ]
         },
