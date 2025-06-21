@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { User, Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
+import Notification from './Notification';
 
 const ServiceForm = ({ serviceType }) => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,9 @@ const ServiceForm = ({ serviceType }) => {
   });
 
   const url = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const [showNotif, setShowNotif] = useState(false);
+  const [notifMsg, setNotifMsg] = useState('');
+  const [notifType, setNotifType] = useState('success');
 
   const handleInputChange = (e) => {
     setFormData({
@@ -36,7 +40,9 @@ const ServiceForm = ({ serviceType }) => {
       });
 
       if (response.ok) {
-        alert('Application submitted successfully!');
+          setNotifMsg('Application submitted successfully!');
+          setNotifType('success');
+          setShowNotif(true);
         // Reset form
         setFormData({
           name: '',
@@ -50,11 +56,21 @@ const ServiceForm = ({ serviceType }) => {
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Failed to submit form. Please try again.');
+      setNotifMsg('Failed to submit form. Please try again.');
+      setNotifType('error');
+      setShowNotif(true);
     }
   };
 
   return (
+    <>
+    <Notification
+      message={notifMsg}
+      type={notifType}
+      show={showNotif}
+      onClose={() => setShowNotif(false)}
+      duration={3000}
+    />
     <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
       <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
         Fill Your Details for {serviceType} Service
@@ -145,6 +161,7 @@ const ServiceForm = ({ serviceType }) => {
         </button>
       </form>
     </div>
+    </>
   );
 };
 
