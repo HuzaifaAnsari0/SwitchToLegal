@@ -97,7 +97,8 @@ export default function CorporateLegalUI() {
                 { id: 'cast-certificate-tehsil', title: 'Cast Certificate by Tehsil', desc: 'ST/SC/OBC documentation', icon: <FileText className="w-6 h-6" /> },
                 { id: 'non-creamy-layer', title: 'Non-Creamy Layer Certificate', desc: '3yrs IC/DC/Cast Cert merger', icon: <FileText className="w-6 h-6" /> },
                 { id: 'ews', title: 'EWS Certificate', desc: 'Economically Weaker Section', icon: <ShieldAlert className="w-6 h-6" /> },
-                { id: 'education-scholarship', title: 'Education Scholarship', desc: 'CSC e-Governance & NGO support', icon: <GraduationCap className="w-6 h-6" /> }
+                { id: 'education-scholarship', title: 'Education Scholarship', desc: 'CSC e-Governance & NGO support', icon: <GraduationCap className="w-6 h-6" /> },
+                { id: 'csc-olympiad-60', title: 'CSC Olympiad 6.0', desc: 'National level competition', icon: <Award className="w-6 h-6" /> },
             ]
         },
         {
@@ -261,6 +262,21 @@ export default function CorporateLegalUI() {
                 { id: 'payment-gateway', title: 'Payment Gateway', desc: 'Secure payment integration', icon: <Banknote className="w-6 h-6" /> },
                 { id: 'digital-marketing', title: 'Digital Marketing', desc: 'Online promotion', icon: <Globe className="w-6 h-6" /> }
             ]
+        },
+        {
+            id: 'franchise',
+            category: 'Franchise',
+            items: [
+                { id: 'franchise', title: 'Franchise', desc: 'Business franchise services', icon: <Building className="w-6 h-6" /> }
+            ]
+        },
+        {
+            id: 'integrate-my-business',
+            category: 'Integrate My Business',
+            items: [                                                
+                { id: 'integrate-my-business', title: 'Integrate My Business', desc: 'Business integration services', icon: <Building className="w-6 h-6" />}
+            ]
+
         }
     ];
 

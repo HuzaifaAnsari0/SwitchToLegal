@@ -116,7 +116,7 @@ const Footer = () => {
                             </li>
                             <li>
                                 <span className="flex items-center">
-                                    <Building className="w-4 h-4 mr-2" /> Jaipur, Rajasthan, India
+                                    <Building className="w-4 h-4 mr-2" />India
                                 </span>
                             </li>
                         </ul>

@@ -33,7 +33,9 @@ const Navbar = () => {
     { id: 'tours-travel-&-visa', title: 'Tours, Travel & Visa' },
     { id: 'e-loan', title: 'E-Loan' },
     { id: 'free-tele-law-&-e-court-support', title: 'Free Tele Law & e-Court Support' },
-    { id: 'e-commerce-&-digital-platform', title: 'E-Commerce & Digital Platform' }
+    { id: 'e-commerce-&-digital-platform', title: 'E-Commerce & Digital Platform' },
+    { id: 'franchise', title: 'Franchise' },
+    { id: 'integrate-my-business', title: 'Integrate My Business' }
   ];
 
   useEffect(() => {
