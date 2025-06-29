@@ -92,7 +92,7 @@ const ServicePage = () => {
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-12 py-10 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">{serviceData.serviceName} – Simplified & Hassle-Free</h2>
           <p className="text-blue-100 mb-6 max-w-3xl mx-auto text-base sm:text-lg">
-            {`${serviceData.serviceName} is a comprehensive service designed to help you navigate the legal and compliance requirements efficiently.`}
+            {`${serviceData.description}`}
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
             <div className="flex items-center">
