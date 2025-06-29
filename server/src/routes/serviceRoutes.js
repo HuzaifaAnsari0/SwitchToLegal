@@ -71,8 +71,8 @@ router.post('/submit-service', async (req, res) => {
         // Send WhatsApp message
         await twilioClient.messages.create({
           body: `New ${serviceType} Service Request\nName: ${name}\nMobile: ${mobile}\nEmail: ${email}\nAddress: ${address}\n${referralCode ? `Referral Code: ${referralCode}` : ''}`,
-          from: `whatsapp:+14155238886`,
-          to: `whatsapp:+917738962559`
+          from: `whatsapp:+16198158171`,
+          to: `whatsapp:+919867222166`
         });
       } catch (bgError) {
         console.error('Background task error:', bgError);
