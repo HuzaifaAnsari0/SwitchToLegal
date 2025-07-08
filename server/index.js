@@ -14,9 +14,9 @@ app.use(cors({
 app.use(express.json());
 
 // Routes
+app.use('/', sitemapRoutes);
 app.use('/', serviceRoutes);
 app.use('/', serviceInfoRoutes);
-app.use('/', sitemapRoutes);
 
 app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
