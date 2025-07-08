@@ -12,13 +12,13 @@ import {
 } from 'lucide-react';
 import logo from '../assets/logo.png';
 
-  const serviceCategories = [
+const serviceCategories = [
     { id: 'citizen-documents', title: 'Citizen Documents' },
     { id: 'legal-documents', title: 'Legal Documents' },
     { id: 'trade-mark-&-ipr-registration', title: 'Trade Mark & IPR Registration' },
     { id: 'gst-&-itr-registration', title: 'GST & ITR Registration' },
     { id: 'e-commerce-&-digital-platform', title: 'E-Commerce & Digital Platform' }
-  ];
+];
 
 const Footer = () => {
     const navigate = useNavigate();
@@ -85,14 +85,15 @@ const Footer = () => {
                         <h4 className="font-semibold mb-4">Company</h4>
                         <ul className="space-y-2 text-slate-400 text-sm">
                             <li>
+                                <a href="/" className="hover:text-blue-400 transition-colors">Home</a>
+                            </li>
+                            <li>
                                 <a href="/about" className="hover:text-blue-400 transition-colors">About Us</a>
                             </li>
                             <li>
                                 <a href="/contact" className="hover:text-blue-400 transition-colors">Contact</a>
                             </li>
-                            <li>
-                                <a href="#careers" className="hover:text-blue-400 transition-colors">Careers</a>
-                            </li>
+
                             <li>
                                 <a href="/privacy-policy" className="hover:text-blue-400 transition-colors">Privacy Policy</a>
                             </li>

@@ -143,7 +143,7 @@ const SwitchToLegal = () => {
       color: 'from-green-500 to-green-600',
       items: [
         { type: 'email', value: 'switchtolegal@gmail.com', href: 'mailto:switchtolegal@gmail.com' },
-        { type: 'whatsapp', value: 'WhatsApp Channel', href: 'https://whatsapp.com/channel/0029VapRSHsDzgT4z7kOFe1v' }
+        { type: 'whatsapp', value: 'WhatsApp Channel', href: 'https://whatsapp.com/channel/0029VbArpre9xVJj3FLYMi3Q' }
       ]
     }
   ];
@@ -173,13 +173,17 @@ const SwitchToLegal = () => {
                 Your trusted partner for legal matters and business expansion with national reach
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8">
-                <button className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 sm:px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
-                  Get Started
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-                <button className="w-full sm:w-auto border-2 border-gray-300 text-gray-700 hover:border-blue-600 hover:text-blue-600 px-6 sm:px-8 py-3 rounded-full font-semibold transition-all duration-300">
-                  Learn More
-                </button>
+                <Link to="/" className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 sm:px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
+                    Get Started
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </Link>
+                <Link to="/" className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto border-2 border-gray-300 text-gray-700 hover:border-blue-600 hover:text-blue-600 px-6 sm:px-8 py-3 rounded-full font-semibold transition-all duration-300">
+                    Learn More
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -239,10 +243,7 @@ const SwitchToLegal = () => {
               {services.map((service, index) => {
                 const IconComponent = service.icon;
                 return (
-                  <div
-                    key={index}
-                    className="bg-white rounded-lg p-2 xs:p-3 sm:p-4 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 transform hover:scale-102 group"
-                  >
+                  <Link to="/" key={index} className="bg-white rounded-lg p-2 xs:p-3 sm:p-4 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 transform hover:scale-102 group block">
                     <div className="flex items-center gap-2 mb-2">
                       <div className={`w-7 h-7 xs:w-8 xs:h-8 bg-gradient-to-r ${service.color} rounded-md flex items-center justify-center group-hover:scale-110 transition-transform`}>
                         <IconComponent className="w-4 h-4 text-white" />
@@ -262,7 +263,7 @@ const SwitchToLegal = () => {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </Link>
                 );
               })}
             </div>
